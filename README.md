@@ -11,7 +11,6 @@ Kotlin Analytics - sofakingforever
 - [x] Add Firebase Default Implementation
 - [x] Add Flurry Default Implementation
 - [ ] Add Example Code
-- [ ] Add Example to README
 
 
 
