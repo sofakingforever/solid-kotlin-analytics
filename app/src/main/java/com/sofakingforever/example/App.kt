@@ -6,6 +6,8 @@ import com.sofakingforever.analytics.dispatchers.FirebaseDispatcherImpl
 import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.dispatchers.AnswersDispatcherImpl
+import com.sofakingforever.example.custom.CustomDispatcher
+import com.sofakingforever.example.custom.LoggerDispatcherImpl
 
 class App : Application() {
 
@@ -15,8 +17,11 @@ class App : Application() {
         super.onCreate()
 
         // init analytics property. this is in charge of tracking all events
-        // you could also try @FlurryDispatcherImpl(), or implement your own
-        analytics = Analytics(this, AnswersDispatcherImpl(true), FirebaseDispatcherImpl(true))
+        analytics = Analytics(this,
+                CustomDispatcher(true),
+                LoggerDispatcherImpl(),
+                AnswersDispatcherImpl(true),
+                FirebaseDispatcherImpl(true))
 
 
         analytics.settings.apply {
