@@ -8,6 +8,9 @@ import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.events.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedAnalyticsEventException
 
+/**
+ * Keep an instance of this to track any event through any dispatcher
+ */
 class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispatcher) {
 
     val settings: AnalyticsSettings = AnalyticsSettings()
@@ -20,6 +23,9 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
         }
     }
 
+    /**
+     * Call this to track one or more events
+     */
     fun track(vararg events: Event) {
 
         if (settings.isAnalyticsEnabled.not()) return
