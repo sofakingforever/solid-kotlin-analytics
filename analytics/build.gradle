@@ -14,7 +14,7 @@ buildscript {
     }
 }
 
-        def versionNameStr = "0.9.1"
+        def versionNameStr = "0.9.2"
 
 android {
     compileSdkVersion 28
@@ -24,7 +24,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 11
+        versionCode 12
         versionName versionNameStr
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -72,7 +72,7 @@ ext {
 
     publishedGroupId = 'com.sofakingforever.libraries'
     artifact = 'kotlin-analytics'
-    libraryName = 'kotlin-analytics'
+    libraryName = 'analytics'
     libraryVersion = versionNameStr
 
     libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
