@@ -14,6 +14,7 @@ buildscript {
     }
 }
 
+        def versionNameStr = "0.9.0"
 
 android {
     compileSdkVersion 28
@@ -24,7 +25,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName versionNameStr
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -72,9 +73,9 @@ ext {
     publishedGroupId = 'com.sofakingforever.libraries'
     artifact = 'kotlin-analytics'
     libraryName = 'Kotlin-Analytics-Interface'
-    libraryVersion = '0.9.0'
+    libraryVersion = versionNameStr
 
-    libraryDescription = 'This view is a container that supports diagonal scroll and fling gesture. It is based on AOSP HorizontalScrollView.'
+    libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
 
     siteUrl = 'https://github.com/sofakingforever/kotlin-analytics'
     gitUrl = 'https://github.com/sofakingforever/kotlin-analytics.git'
