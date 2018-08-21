@@ -4,7 +4,10 @@
 
 [Writing SOLID Analytics With Kotlin for Android](https://medium.com/@nadavfima/how-to-build-better-analytics-with-kotlin-60ab50ce25ac) - Medium Article
 
-This library demonstrates how you could decouple analytics libraries from your business logic code, effectively allowing you to add & remove analytics services and events on-the-fly.
+This library demonstrates how you could decouple analytics libraries from your business logic code, effectively allowing you to:
+* Add & remove analytics services quickly
+* Add & remove events quickly
+* Change event names and parameters according to the required kit
 
 ## Quick Start Guide
 
