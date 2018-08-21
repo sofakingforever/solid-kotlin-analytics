@@ -4,7 +4,8 @@ Kotlin Analytics - sofakingforever
 
 - [x] Setup repository
 - [x] Add Code
-- [ ] Upload First Build
+- [X] Upload First Build
+- [X] Add Gradle Example
 - [ ] Add Documentation
 - [x] Add Fabric Answers Default Implementation
 - [x] Add Firebase Default Implementation
@@ -13,3 +14,18 @@ Kotlin Analytics - sofakingforever
 - [ ] Add Example to README
 
 
+
+```gradle
+
+repositories {
+
+    maven { url "http://dl.bintray.com/sofakingforever/libraries" }
+
+}
+
+dependencies {
+
+    compile 'com.sofakingforever.libraries:analytics:0.9.2@aar'
+
+}
+```
