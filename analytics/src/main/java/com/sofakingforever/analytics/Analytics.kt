@@ -5,7 +5,7 @@ import android.util.Log
 import com.sofakingforever.analytics.events.AnalyticsContentView
 import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
-import com.sofakingforever.analytics.events.BaseEvent
+import com.sofakingforever.analytics.events.Event
 
 class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispatcher) {
 
@@ -20,7 +20,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
     val settings: AnalyticsSettings = AnalyticsSettings()
 
-    fun track(vararg events: BaseEvent) {
+    fun track(vararg events: Event) {
 
         if (settings.isAnalyticsEnabled.not()) return
 

@@ -29,7 +29,7 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(this, AnswersDispatcherImpl(true), FirebaseDispatcherImpl(true))
+analytics = Analytics(this, AnswersDispatcherImpl(init = true), FirebaseDispatcherImpl(init = true))
 
 // send event
 analytics.track(SimpleEvent())

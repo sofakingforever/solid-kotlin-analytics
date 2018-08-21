@@ -2,7 +2,7 @@ package com.sofakingforever.analytics.events
 
 import com.sofakingforever.analytics.kits.AnalyticsKit
 
-interface BaseEvent {
+interface Event {
     fun isConsideredIncluded(kit: AnalyticsKit): Boolean {
 
         if (excludedKits.contains(kit)) {
@@ -12,7 +12,7 @@ interface BaseEvent {
 
 
         if (includedKits.isNotEmpty() && includedKits.contains(kit).not()) {
-            // not included if includedKits has anything, but doesn have this kit
+            // not included if includedKits has anything, but doesn't have this kit
             return false
         }
 
