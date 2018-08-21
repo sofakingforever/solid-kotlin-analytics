@@ -17,6 +17,11 @@ class MainActivity : BaseActivity() {
 
         setContentView(R.layout.activity_main)
 
+        checkbox_optout.setOnCheckedChangeListener { button, isChecked ->
+            // update the settings to enable or disable all analytics tools
+            analytics.settings.isAnalyticsEnabled = isChecked
+
+        }
 
         button_eventSimple.setOnClickListener {
 

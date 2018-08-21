@@ -2,10 +2,6 @@ package com.sofakingforever.analytics
 
 class AnalyticsSettings {
 
-
-    @Volatile
-    var isAnalyticsInitiated = true
-
     @Volatile
     var isAnalyticsEnabled = true
 

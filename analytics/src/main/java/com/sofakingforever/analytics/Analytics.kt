@@ -19,9 +19,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
     fun track(vararg events: BaseEvent) {
 
-        if (!settings.isAnalyticsInitiated) return
-
-        if (!settings.isAnalyticsEnabled) return
+        if (settings.isAnalyticsEnabled.not()) return
 
 
         events.forEach {
