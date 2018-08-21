@@ -1,5 +1,6 @@
 # SOLID Android Client Kotlin Analytics Interface
 
+![fancy-diagram](https://cdn-images-1.medium.com/max/2000/1*WS5jAiurPYSrY_RdGDK8pQ.png)
 
 ## Quick Start Guide
 
