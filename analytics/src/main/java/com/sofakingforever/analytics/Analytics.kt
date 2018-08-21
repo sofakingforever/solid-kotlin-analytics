@@ -11,7 +11,10 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
     init {
         dispatchers.forEach { dispatcher ->
-            dispatcher.initDispatcher(context)
+
+            if (dispatcher.init) {
+                dispatcher.initDispatcher(context)
+            }
         }
     }
 

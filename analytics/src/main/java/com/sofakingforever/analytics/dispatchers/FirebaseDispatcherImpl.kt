@@ -10,7 +10,9 @@ import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.kits.FirebaseKit
 
-class FirebaseDispatcherImpl : AnalyticsDispatcher {
+class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+
+    constructor() : this(true)
 
     override val kit = FirebaseKit.instance
 
@@ -61,11 +63,11 @@ class FirebaseDispatcherImpl : AnalyticsDispatcher {
 
         getParameters(kit).forEach {
             when {
-                // numbers
+            // numbers
                 it.value is Int -> bundle.putInt(it.key, it.value as Int)
                 it.value is Float -> bundle.putFloat(it.key, it.value as Float)
                 it.value is Double -> bundle.putDouble(it.key, it.value as Double)
-                // other stuff
+            // other stuff
                 it.value is String -> bundle.putString(it.key, it.value as String)
                 it.value is Boolean -> bundle.putBoolean(it.key, it.value as Boolean)
 

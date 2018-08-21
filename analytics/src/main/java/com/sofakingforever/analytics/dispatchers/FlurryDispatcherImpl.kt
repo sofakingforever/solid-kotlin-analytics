@@ -8,8 +8,9 @@ import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.kits.FlurryKit
 
-class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
+class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : AnalyticsDispatcher {
 
+    constructor() : this(false, "")
 
     override val kit = FlurryKit.instance
 

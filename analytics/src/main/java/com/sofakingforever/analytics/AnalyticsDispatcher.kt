@@ -8,6 +8,8 @@ import com.sofakingforever.analytics.kits.AnalyticsKit
 
 interface AnalyticsDispatcher {
 
+    val init: Boolean
+
     val kit: AnalyticsKit
 
     fun initDispatcher(context: Context)

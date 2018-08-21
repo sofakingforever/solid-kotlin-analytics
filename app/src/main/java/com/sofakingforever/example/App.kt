@@ -16,7 +16,7 @@ class App : Application() {
 
         // init analytics property. this is in charge of tracking all events
         // you could also try @FlurryDispatcherImpl(), or implement your own
-        analytics = Analytics(this, AnswersDispatcherImpl(), FirebaseDispatcherImpl())
+        analytics = Analytics(this, AnswersDispatcherImpl(true), FirebaseDispatcherImpl(true))
 
 
         analytics.settings.apply {

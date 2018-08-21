@@ -10,13 +10,19 @@ import com.sofakingforever.analytics.events.AnalyticsContentView
 import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.kits.AnswersKit
+import io.fabric.sdk.android.Fabric
 
-class AnswersDispatcherImpl : AnalyticsDispatcher {
+/**
+ *
+ */
+class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+
+    constructor() : this(true)
 
     override val kit = AnswersKit.instance
 
     override fun initDispatcher(context: Context) {
-
+        Fabric.with(context, Answers())
     }
 
     override fun trackCustomEvent(event: AnalyticsEvent) {
