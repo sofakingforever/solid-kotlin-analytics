@@ -59,7 +59,7 @@ class FirebaseDispatcherImpl : AnalyticsDispatcher {
     private fun AnalyticsEvent.getBundle(): Bundle {
         val bundle = Bundle()
 
-        getParameters().forEach {
+        getParameters(kit).forEach {
             when {
                 // numbers
                 it.value is Int -> bundle.putInt(it.key, it.value as Int)

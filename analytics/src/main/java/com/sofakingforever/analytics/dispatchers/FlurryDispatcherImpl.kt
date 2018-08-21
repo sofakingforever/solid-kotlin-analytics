@@ -38,7 +38,7 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
     private fun AnalyticsEvent.createFlurryAnalyticsMap(): MutableMap<String, String> {
         val map: MutableMap<String, String> = mutableMapOf()
 
-        this.getParameters().forEach {
+        this.getParameters(kit).forEach {
 
             if (it.value is Number) {
                 map[it.key] = it.value.toString()

@@ -36,7 +36,7 @@ class AnswersDispatcherImpl : AnalyticsDispatcher {
         return CustomEvent(this.getEventName(kit))
                 .apply {
 
-                    this@createAnswersAnalyticsEvent.getParameters()
+                    this@createAnswersAnalyticsEvent.getParameters(kit)
                             .forEach {
                                 if (it.value is Number) {
                                     putCustomAttribute(it.key, it.value as Number)
