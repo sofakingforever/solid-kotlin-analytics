@@ -1,4 +1,4 @@
-package com.sofaking.moonworshipper.analytics.dispatchers
+package com.sofakingforever.analytics.dispatchers
 
 import android.content.Context
 import com.flurry.android.FlurryAgent

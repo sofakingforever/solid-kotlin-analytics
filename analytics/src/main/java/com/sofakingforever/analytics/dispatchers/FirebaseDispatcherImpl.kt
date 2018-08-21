@@ -1,6 +1,5 @@
-package com.sofaking.moonworshipper.analytics.dispatchers
+package com.sofakingforever.analytics.dispatchers
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics

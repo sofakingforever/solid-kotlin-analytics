@@ -2,7 +2,7 @@ package com.sofakingforever.example
 
 import android.app.Application
 import android.util.Log
-import com.sofaking.moonworshipper.analytics.dispatchers.FirebaseDispatcherImpl
+import com.sofakingforever.analytics.dispatchers.FirebaseDispatcherImpl
 import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.dispatchers.AnswersDispatcherImpl
