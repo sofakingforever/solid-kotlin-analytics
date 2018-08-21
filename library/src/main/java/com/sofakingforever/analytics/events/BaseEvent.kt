@@ -1,9 +1,9 @@
 package com.sofakingforever.analytics.events
 
-import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.kits.AnalyticsKit
 
 interface BaseEvent {
-    fun isConsideredIncluded(kit: AnalyticsDispatcher.Kit): Boolean {
+    fun isConsideredIncluded(kit: AnalyticsKit): Boolean {
 
         if (excludedKits.contains(kit)) {
             // not included if declared excluded
@@ -19,11 +19,11 @@ interface BaseEvent {
         return true
     }
 
-    val excludedKits: List<AnalyticsDispatcher.Kit>
+    val excludedKits: List<AnalyticsKit>
         get() = emptyList()
 
 
-    val includedKits: List<AnalyticsDispatcher.Kit>
+    val includedKits: List<AnalyticsKit>
         get() = emptyList()
 
 }

@@ -4,10 +4,11 @@ import android.content.Context
 import com.sofakingforever.analytics.events.AnalyticsContentView
 import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
+import com.sofakingforever.analytics.kits.AnalyticsKit
 
 interface AnalyticsDispatcher {
 
-    val kit: Kit
+    val kit: AnalyticsKit
 
     fun initDispatcher(context: Context)
 
@@ -39,11 +40,6 @@ interface AnalyticsDispatcher {
 
     fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent)
 
-    enum class Kit {
-
-        Answers, Firebase, Flurry, Other
-
-    }
 
 }
 
