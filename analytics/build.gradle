@@ -72,7 +72,7 @@ ext {
 
     publishedGroupId = 'com.sofakingforever.libraries'
     artifact = 'kotlin-analytics'
-    libraryName = 'Kotlin-Analytics-Interface'
+    libraryName = 'kotlin-analytics'
     libraryVersion = versionNameStr
 
     libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
