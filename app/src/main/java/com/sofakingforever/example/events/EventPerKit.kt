@@ -15,7 +15,18 @@ class EventPerKit(private val whatever: Boolean) : AnalyticsEvent {
 
     override fun getParameters(kit: AnalyticsKit): MutableMap<String, Any> {
         val parameters = super.getParameters(kit)
-        parameters["whatever"] = whatever
+
+        when (kit) {
+            // override only for firebase
+            is FirebaseKit -> {
+                parameters["firebaseParam"] = whatever
+            }
+            else -> {
+                parameters["generalParam"] = whatever
+            }
+        }
+
+
         return parameters
     }
 

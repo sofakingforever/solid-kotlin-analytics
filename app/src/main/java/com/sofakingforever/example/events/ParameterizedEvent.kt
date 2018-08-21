@@ -9,7 +9,7 @@ class ParameterizedEvent(private val isFirstClick : Boolean, private val timeCli
     override fun getParameters(kit: AnalyticsKit): MutableMap<String, Any> {
         val parameters = super.getParameters(kit)
 
-        parameters["isFirstClick"] = isFirstClick
+        parameters["firstClick"] = isFirstClick
         parameters["timeClicked"] = timeClicked
 
         return parameters
