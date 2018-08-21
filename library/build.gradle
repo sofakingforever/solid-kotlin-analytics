@@ -14,7 +14,7 @@ buildscript {
     }
 }
 
-        def versionNameStr = "0.9.0"
+        def versionNameStr = "0.9.1"
 
 android {
     compileSdkVersion 28
@@ -24,7 +24,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
+        versionCode 11
         versionName versionNameStr
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
