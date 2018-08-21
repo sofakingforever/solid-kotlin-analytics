@@ -6,7 +6,7 @@ interface AnalyticsEvent : BaseEvent {
 
     fun getEventName(kit: AnalyticsKit): String
 
-    fun getParameters(): MutableMap<String, Any> {
+    fun getParameters(kit: AnalyticsKit): MutableMap<String, Any> {
         return mutableMapOf()
     }
 

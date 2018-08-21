@@ -1,0 +1,46 @@
+package com.sofakingforever.example
+
+import android.os.Bundle
+import com.sofakingforever.example.events.EventPerKit
+import com.sofakingforever.example.events.ParameterizedEvent
+import com.sofakingforever.example.events.SimpleEvent
+import com.sofakingforever.kotlin_analytics.R
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : BaseActivity() {
+
+
+    private var isFirstClick: Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_main)
+
+
+        button_eventSimple.setOnClickListener {
+
+            analytics.track(SimpleEvent())
+
+        }
+
+
+        button_eventKit.setOnClickListener {
+
+            analytics.track(EventPerKit(true))
+
+        }
+
+        button_eventParams.setOnClickListener {
+
+            analytics.track(ParameterizedEvent(isFirstClick, System.currentTimeMillis()))
+
+            isFirstClick = false
+
+        }
+
+
+    }
+
+
+}
