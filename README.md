@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.sofakingforever.libraries:analytics:1.0.1@aar'
+    compile 'com.sofakingforever.libraries:analytics:1.0.2@aar'
 }
 ```
 
