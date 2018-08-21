@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:checked="true"
-        android:text="Analytics Opt-out" />
+        android:text="Report Analytics" />
 
 
     <Button
