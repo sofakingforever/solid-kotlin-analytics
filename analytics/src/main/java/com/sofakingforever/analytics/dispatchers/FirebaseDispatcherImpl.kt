@@ -29,7 +29,7 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
     override fun trackContentView(contentView: AnalyticsContentView) {
-        firebaseAnalytics?.logEvent("contentView_" + contentView.getViewName().firebaseFriendly(), Bundle.EMPTY)
+        firebaseAnalytics?.logEvent("contentView_" + contentView.getViewName(kit).firebaseFriendly(), Bundle.EMPTY)
     }
 
     override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
@@ -67,6 +67,7 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
                 it.value is Int -> bundle.putInt(it.key, it.value as Int)
                 it.value is Float -> bundle.putFloat(it.key, it.value as Float)
                 it.value is Double -> bundle.putDouble(it.key, it.value as Double)
+                it.value is Long -> bundle.putLong(it.key, it.value as Long)
             // other stuff
                 it.value is String -> bundle.putString(it.key, it.value as String)
                 it.value is Boolean -> bundle.putBoolean(it.key, it.value as Boolean)

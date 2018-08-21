@@ -28,7 +28,7 @@ class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : Ana
     }
 
     override fun trackContentView(contentView: AnalyticsContentView) {
-        FlurryAgent.logEvent("contentView_" + contentView.getViewName())
+        FlurryAgent.logEvent("contentView_" + contentView.getViewName(kit))
     }
 
     override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {

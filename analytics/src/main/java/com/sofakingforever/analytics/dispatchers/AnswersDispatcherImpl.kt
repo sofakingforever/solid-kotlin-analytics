@@ -60,7 +60,7 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
 
     private fun AnalyticsContentView.createAnswersEvent(): ContentViewEvent {
-        return ContentViewEvent().putContentName(this.getViewName())
+        return ContentViewEvent().putContentName(this.getViewName(kit))
     }
 
     private fun AnalyticsInviteEvent.createAnswersInviteEvent(): InviteEvent {
