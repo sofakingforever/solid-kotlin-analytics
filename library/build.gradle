@@ -67,7 +67,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 ext {
-    bintrayRepo = 'maven'
+    bintrayRepo = 'libraries'
     bintrayName = 'kotlin-analytics'
 
     publishedGroupId = 'com.sofakingforever.libraries'
