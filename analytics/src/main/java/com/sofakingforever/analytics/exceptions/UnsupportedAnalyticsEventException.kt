@@ -1,4 +1,4 @@
-package com.sofakingforever.analytics
+package com.sofakingforever.analytics.exceptions
 
 import com.sofakingforever.analytics.events.Event
 

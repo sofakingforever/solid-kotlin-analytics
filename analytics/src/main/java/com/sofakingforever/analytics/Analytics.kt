@@ -6,8 +6,10 @@ import com.sofakingforever.analytics.events.AnalyticsContentView
 import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.events.Event
+import com.sofakingforever.analytics.exceptions.UnsupportedAnalyticsEventException
 
 class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispatcher) {
+
 
     init {
         dispatchers.forEach { dispatcher ->
@@ -29,15 +31,9 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
             dispatchers.forEach { dispatcher ->
 
-                // try / catch for each event / dispatcher combination specifically
 
                 try {
-                    when (it) {
-                        is AnalyticsEvent -> dispatcher.trackCustomEventBegin(it)
-                        is AnalyticsContentView -> dispatcher.trackContentViewBegin(it)
-                        is AnalyticsInviteEvent -> dispatcher.trackInviteEventBegin(it)
-                        else -> throw UnsupportedAnalyticsEventException(it)
-                    }
+                    dispatcher.track(it)
 
                 } catch (e: Exception) {
                     Log.e("Analytics", "${dispatcher.kit.name} dispatcher couldn't fire \"${it.javaClass.name}\" event", e)
