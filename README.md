@@ -8,7 +8,7 @@ This library demonstrates how you could decouple analytics libraries from your b
 
 ## Quick Start Guide
 
-### Gradle
+### Add To Gradle
 Add library to your gradle module
 
 ```gradle
@@ -21,7 +21,7 @@ dependencies {
 }
 ```
 
-### Kotlin Implementation
+### Kotlin Implementation Example
 Initiate analytics and send events
 
 ```kotlin
@@ -38,7 +38,7 @@ class SimpleEvent : AnalyticsEvent {
 }
 ```
 
-See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
+### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
 ## Dispatchers Currently Available
 * Fabric Answers
@@ -46,12 +46,6 @@ See more integration stuff in the [example code](https://github.com/sofakingfore
 * Yahoo Flurry
 * Logger (prints to logcat)
 * Build your own Dispatcher :)
-
-
-
-### Originally developed for [Wakey - Beautiful Alarm Clock](http://bit.ly/2Pmlwhg)
-
-
 
 ## Todo List
 
@@ -67,3 +61,5 @@ See more integration stuff in the [example code](https://github.com/sofakingfore
 - [ ] Add Documentation
 - [ ] Additional Common Dispatchers?
 - [ ] Anything else important..?
+
+### Originally developed for [Wakey - Beautiful Alarm Clock](http://bit.ly/2Pmlwhg)
