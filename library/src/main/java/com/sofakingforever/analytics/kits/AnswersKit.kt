@@ -1,6 +1,7 @@
 package com.sofakingforever.analytics.kits
 
 class AnswersKit private constructor() : AnalyticsKit {
+    override val name: String = "answers"
 
     private object Holder {
         val INSTANCE = AnswersKit()
