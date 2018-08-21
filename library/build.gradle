@@ -34,7 +34,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    compile('com.crashlytics.sdk.android:answers:1.4.2@aar') {
+    // Flurry Analytics
+    implementation 'com.flurry.android:analytics:11.1.1@aar'
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
+    // Fabric Answers Analytics
+    implementation('com.crashlytics.sdk.android:answers:1.4.2@aar') {
         transitive = true
     }
 
