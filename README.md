@@ -1,8 +1,9 @@
-#Kotlin Analytics - sofakingforever
+# Kotlin Analytics - sofakingforever
 
 
-##Quick Start Guide
+## Quick Start Guide
 
+### Gradle
 Add library to your gradle module
 
 ```gradle
@@ -15,11 +16,12 @@ repositories {
 
 dependencies {
 
-    compile 'com.sofakingforever.libraries:analytics:0.9.3@aar'
+    compile 'com.sofakingforever.libraries:analytics:1.0.0@aar'
 
 }
 ```
 
+### Kotlin Implementation
 Initiate analytics and send events
 
 ```kotlin
@@ -41,16 +43,17 @@ class SimpleEvent : AnalyticsEvent {
 See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
 
-### Todo List
+## Todo List
 
 - [x] Setup repository
 - [x] Add Code
-- [X] Upload First Build
-- [X] Add Gradle Example
+- [x] Upload First Build
+- [x] Add Gradle Example
 - [x] Add Fabric Answers Default Implementation
 - [x] Add Firebase Default Implementation
 - [x] Add Flurry Default Implementation
 - [x] Add Example Code to App Module
-- [ ] Add Example Code to README
+- [x] Add Example Code to README
 - [ ] Add Documentation
-- [ ] Additional common dispatchers?
+- [ ] Additional Common Dispatchers?
+- [ ] Anything else important..?

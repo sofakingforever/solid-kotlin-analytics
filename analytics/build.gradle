@@ -14,7 +14,7 @@ buildscript {
     }
 }
 
-        def versionNameStr = "0.9.3"
+def versionNameStr = "1.0.0"
 
 android {
     compileSdkVersion 28
@@ -24,7 +24,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 13
+        versionCode 100
         versionName versionNameStr
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -47,7 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Flurry Analytics
     implementation 'com.flurry.android:analytics:11.1.1@aar'
