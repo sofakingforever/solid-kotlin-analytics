@@ -2,6 +2,7 @@ package com.sofakingforever.example
 
 import android.os.Bundle
 import com.sofakingforever.example.events.EventPerKit
+import com.sofakingforever.example.events.MainContentView
 import com.sofakingforever.example.events.ParameterizedEvent
 import com.sofakingforever.example.events.SimpleEvent
 import com.sofakingforever.kotlin_analytics.R
@@ -47,5 +48,9 @@ class MainActivity : BaseActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
 
+        analytics.track(MainContentView())
+    }
 }
