@@ -7,6 +7,7 @@ import com.sofakingforever.analytics.AnalyticsKit
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperty
 
 /**
  * This is just a logger implementation, Use this if you're in DEBUG mode.
@@ -15,6 +16,7 @@ import com.sofakingforever.analytics.events.InviteEvent
  * how to implement your own service dispatcher.
  */
 class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+
 
 
     constructor() : this(true)
@@ -38,5 +40,7 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
         Log.d(tag, "Tracking inviteEvent ${inviteEvent.packageName}")
     }
-
+    override fun setUserProperty(property: SetUserProperty) {
+        // used only for certain analytics
+    }
 }
