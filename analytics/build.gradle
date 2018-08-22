@@ -97,7 +97,7 @@ install {
         pom.project {
             packaging 'aar'
             groupId publishedGroupId
-            artifactId Artifact
+            artifactId artifact
 
             name libraryName
             description libraryDescription
