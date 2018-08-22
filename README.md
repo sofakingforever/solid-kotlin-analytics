@@ -60,12 +60,6 @@ class SimpleEvent : CustomEvent {
 
 ### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
-## Dispatchers Currently Available
-* Fabric Answers
-* Google Firebase
-* Yahoo Flurry
-* Logger (prints to logcat)
-* Build your own Dispatcher :)
 
 ## Todo List
 
