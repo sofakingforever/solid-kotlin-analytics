@@ -59,7 +59,7 @@ ext {
     bintrayRepo = 'analytics'
     bintrayName = 'kotlin-analytics'
 
-    publishedGroupId = 'com.sofakingforever.libraries'
+    publishedGroupId = 'com.sofakingforever.analytics'
     artifact = 'kotlin-analytics'
     libraryName = 'analytics'
     libraryVersion = versionNameStr
