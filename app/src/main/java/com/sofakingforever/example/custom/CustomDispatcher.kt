@@ -1,13 +1,11 @@
 package com.sofakingforever.example.custom
 
 import android.content.Context
-import android.util.Log
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.events.AnalyticsContentView
 import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
-import com.sofakingforever.analytics.kits.AnalyticsKit
-import com.sofakingforever.example.custom.CustomKit
+import com.sofakingforever.analytics.AnalyticsKit
 
 /**
  * Look at any of the library's Dispatcher Implementations to learn how to implement one yourself

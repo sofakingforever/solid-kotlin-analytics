@@ -49,22 +49,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    // Flurry Analytics
-    implementation 'com.flurry.android:analytics:11.1.1@aar'
 
-    // Firebase Analytics
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-
-    // Fabric Answers Analytics
-    implementation('com.crashlytics.sdk.android:answers:1.4.2@aar') {
-        transitive = true
-    }
 
 }
 repositories {
     mavenCentral()
-
-    maven { url 'https://maven.fabric.io/public' }
 }
 ext {
     bintrayRepo = 'libraries'

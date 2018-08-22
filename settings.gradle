@@ -1,1 +1,1 @@
-include ':app', ':analytics'
+include ':app', ':analytics', ':kit-firebase', ':kit-answers', ':kit-flurry'
