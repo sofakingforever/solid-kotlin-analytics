@@ -32,8 +32,8 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    private fun com.sofakingforever.analytics.events.CustomEvent.createAnswersAnalyticsEvent(): CustomEvent {
-        return CustomEvent(this.getEventName(kit))
+    private fun com.sofakingforever.analytics.events.CustomEvent.createAnswersAnalyticsEvent(): com.crashlytics.android.answers.CustomEvent {
+        return com.crashlytics.android.answers.CustomEvent(this.getEventName(kit))
                 .apply {
 
                     this@createAnswersAnalyticsEvent.getParameters(kit)
@@ -53,12 +53,12 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    private fun com.sofakingforever.analytics.events.ContentViewEvent.createAnswersEvent(): ContentViewEvent {
-        return ContentViewEvent().putContentName(this.getViewName(kit))
+    private fun com.sofakingforever.analytics.events.ContentViewEvent.createAnswersEvent(): com.crashlytics.android.answers.ContentViewEvent {
+        return com.crashlytics.android.answers.ContentViewEvent().putContentName(this.getViewName(kit))
     }
 
-    private fun com.sofakingforever.analytics.events.InviteEvent.createAnswersInviteEvent(): InviteEvent {
-        return InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
+    private fun com.sofakingforever.analytics.events.InviteEvent.createAnswersInviteEvent(): com.crashlytics.android.answers.InviteEvent {
+        return com.crashlytics.android.answers.InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 
 }
