@@ -1,3 +1,6 @@
+[ ![Bintray](https://api.bintray.com/packages/sofakingforever/analytics/kotlin-analytics/images/download.svg) ](https://bintray.com/sofakingforever/analytics/kotlin-analytics/_latestVersion)
+
+
 # SOLID Android Client Kotlin Analytics Interface
 
 ![fancy-diagram](https://cdn-images-1.medium.com/max/2000/1*WS5jAiurPYSrY_RdGDK8pQ.png)
