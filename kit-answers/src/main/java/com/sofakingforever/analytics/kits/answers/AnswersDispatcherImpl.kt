@@ -2,15 +2,7 @@ package com.sofakingforever.analytics.kits.answers
 
 import android.content.Context
 import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.crashlytics.android.answers.CustomEvent
-import com.crashlytics.android.answers.InviteEvent
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
-import com.sofakingforever.analytics.events.Event
-import com.sofakingforever.analytics.kits.answers.AnswersKit
 import io.fabric.sdk.android.Fabric
 
 /**
@@ -27,20 +19,20 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         Fabric.with(context, Answers())
     }
 
-    override fun trackCustomEvent(event: AnalyticsEvent) {
+    override fun trackCustomEvent(event: com.sofakingforever.analytics.events.CustomEvent) {
         Answers.getInstance().logCustom(event.createAnswersAnalyticsEvent())
     }
 
-    override fun trackContentView(contentView: AnalyticsContentView) {
+    override fun trackContentView(contentView: com.sofakingforever.analytics.events.ContentViewEvent) {
         Answers.getInstance().logContentView(contentView.createAnswersEvent())
     }
 
-    override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
+    override fun trackInviteEvent(inviteEvent: com.sofakingforever.analytics.events.InviteEvent) {
         Answers.getInstance().logInvite(inviteEvent.createAnswersInviteEvent())
     }
 
 
-    private fun AnalyticsEvent.createAnswersAnalyticsEvent(): CustomEvent {
+    private fun com.sofakingforever.analytics.events.CustomEvent.createAnswersAnalyticsEvent(): CustomEvent {
         return CustomEvent(this.getEventName(kit))
                 .apply {
 
@@ -61,11 +53,11 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    private fun AnalyticsContentView.createAnswersEvent(): ContentViewEvent {
+    private fun com.sofakingforever.analytics.events.ContentViewEvent.createAnswersEvent(): ContentViewEvent {
         return ContentViewEvent().putContentName(this.getViewName(kit))
     }
 
-    private fun AnalyticsInviteEvent.createAnswersInviteEvent(): InviteEvent {
+    private fun com.sofakingforever.analytics.events.InviteEvent.createAnswersInviteEvent(): InviteEvent {
         return InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 

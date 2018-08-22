@@ -4,9 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
 
 class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
@@ -22,15 +22,15 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    override fun trackCustomEvent(event: AnalyticsEvent) {
+    override fun trackCustomEvent(event: CustomEvent) {
         firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
     }
 
-    override fun trackContentView(contentView: AnalyticsContentView) {
+    override fun trackContentView(contentView: ContentViewEvent) {
         firebaseAnalytics?.logEvent("contentView_" + contentView.getViewName(kit).firebaseFriendly(), Bundle.EMPTY)
     }
 
-    override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
+    override fun trackInviteEvent(inviteEvent: InviteEvent) {
         firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SHARE, inviteEvent.getBundle())
     }
 
@@ -47,7 +47,7 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    private fun AnalyticsInviteEvent.getBundle(): Bundle {
+    private fun InviteEvent.getBundle(): Bundle {
         val bundle = Bundle()
 
         bundle.putString("packageName", packageName)
@@ -56,7 +56,7 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         return bundle
     }
 
-    private fun AnalyticsEvent.getBundle(): Bundle {
+    private fun CustomEvent.getBundle(): Bundle {
         val bundle = Bundle()
 
         getParameters(kit).forEach {

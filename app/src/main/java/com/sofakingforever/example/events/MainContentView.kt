@@ -1,9 +1,9 @@
 package com.sofakingforever.example.events
 
-import com.sofakingforever.analytics.events.AnalyticsContentView
+import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.AnalyticsKit
 
-class MainContentView : AnalyticsContentView {
+class MainContentView : ContentViewEvent {
     override fun getViewName(kit : AnalyticsKit): String = "Main Screen"
 
 

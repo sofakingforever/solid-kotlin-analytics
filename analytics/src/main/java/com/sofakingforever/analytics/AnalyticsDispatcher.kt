@@ -1,10 +1,10 @@
 package com.sofakingforever.analytics
 
 import android.content.Context
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
-import com.sofakingforever.analytics.events.Event
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 
 /**
@@ -26,11 +26,11 @@ interface AnalyticsDispatcher {
     fun initDispatcher(context: Context)
 
 
-    fun trackContentView(contentView: AnalyticsContentView)
+    fun trackContentView(contentView: ContentViewEvent)
 
-    fun trackCustomEvent(event: AnalyticsEvent)
+    fun trackCustomEvent(event: CustomEvent)
 
-    fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent)
+    fun trackInviteEvent(inviteEvent: InviteEvent)
 
     /**
      * This method is called from the parent @Analytics class for each event.
@@ -41,9 +41,9 @@ interface AnalyticsDispatcher {
             // track the event only if it is not configured as excluded
             when (event) {
                 // track each type differently
-                is AnalyticsEvent -> trackCustomEvent(event)
-                is AnalyticsContentView -> trackContentView(event)
-                is AnalyticsInviteEvent -> trackInviteEvent(event)
+                is CustomEvent -> trackCustomEvent(event)
+                is ContentViewEvent -> trackContentView(event)
+                is InviteEvent -> trackInviteEvent(event)
                 // alert developer if this is a customized event implementation
                 else -> throw UnsupportedEventException(event)
             }

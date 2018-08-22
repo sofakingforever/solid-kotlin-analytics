@@ -1,8 +1,9 @@
 package com.sofakingforever.analytics.events
 
 import com.sofakingforever.analytics.AnalyticsKit
+import com.sofakingforever.analytics.events.base.Event
 
-interface AnalyticsEvent : Event {
+interface CustomEvent : Event {
 
     fun getEventName(kit: AnalyticsKit): String
 

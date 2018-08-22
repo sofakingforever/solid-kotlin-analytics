@@ -2,7 +2,7 @@ package com.sofakingforever.analytics
 
 import android.content.Context
 import android.util.Log
-import com.sofakingforever.analytics.events.Event
+import com.sofakingforever.analytics.events.base.Event
 
 /**
  * The *Analytics* class is in charge of tracking any *Event* implementation.

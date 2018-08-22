@@ -1,8 +1,9 @@
 package com.sofakingforever.analytics.events
 
 import android.content.Context
+import com.sofakingforever.analytics.events.base.Event
 
-interface AnalyticsInviteEvent : Event {
+interface InviteEvent : Event {
 
     val context: Context
     val packageName: String

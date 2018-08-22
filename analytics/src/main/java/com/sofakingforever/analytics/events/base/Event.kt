@@ -1,7 +1,10 @@
-package com.sofakingforever.analytics.events
+package com.sofakingforever.analytics.events.base
 
 import com.sofakingforever.analytics.AnalyticsKit
 
+/**
+ * Every event interface (See CustomEvent or ContentViewEvent) should extend this interface.
+ */
 interface Event {
     fun isConsideredIncluded(kit: AnalyticsKit): Boolean {
 
