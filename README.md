@@ -23,12 +23,17 @@ repositories {
 
 dependencies {
 
-    def analyticsVersion = '1.0.5'
+    def analyticsVersion = '1.0.7'
 
+    // add the basic analytics interfface library
     compile "com.sofakingforever.analytics:analytics:$analyticsVersion@aar"
+
+    // then add the kits you need
     compile "com.sofakingforever.analytics:kit-flurry:$analyticsVersion@aar"
     compile "com.sofakingforever.analytics:kit-answers:$analyticsVersion@aar"
     compile "com.sofakingforever.analytics:kit-firebase:$analyticsVersion@aar"
+
+    // or implement your own kit/dispatcher
 
 }
 ```
