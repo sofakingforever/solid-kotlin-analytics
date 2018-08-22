@@ -18,14 +18,14 @@ Add library to your gradle module
 
 ```gradle
 repositories {
-    maven { url "http://dl.bintray.com/sofakingforever/libraries" }
+    maven { url "http://dl.bintray.com/sofakingforever/analytics" }
 }
 
 dependencies {
 
     def analyticsVersion = '1.0.7'
 
-    // add the basic analytics interfface library
+    // add the basic analytics interface library
     compile "com.sofakingforever.analytics:analytics:$analyticsVersion@aar"
 
     // then add the kits you need
