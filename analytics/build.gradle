@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-//apply from: 'bintray.gradle'
 
 buildscript {
     repositories {
@@ -14,7 +13,7 @@ buildscript {
     }
 }
 
-def versionNameStr = "1.0.2"
+def versionNameStr = project.version
 
 android {
     compileSdkVersion 28
@@ -24,7 +23,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 102
+        versionCode 104
         versionName versionNameStr
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -49,36 +48,25 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    // Flurry Analytics
-    implementation 'com.flurry.android:analytics:11.1.1@aar'
 
-    // Firebase Analytics
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-
-    // Fabric Answers Analytics
-    implementation('com.crashlytics.sdk.android:answers:1.4.2@aar') {
-        transitive = true
-    }
 
 }
 repositories {
     mavenCentral()
-
-    maven { url 'https://maven.fabric.io/public' }
 }
 ext {
-    bintrayRepo = 'libraries'
+    bintrayRepo = 'analytics'
     bintrayName = 'kotlin-analytics'
 
-    publishedGroupId = 'com.sofakingforever.libraries'
+    publishedGroupId = 'com.sofakingforever.analytics'
     artifact = 'kotlin-analytics'
     libraryName = 'analytics'
     libraryVersion = versionNameStr
 
     libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
 
-    siteUrl = 'https://github.com/sofakingforever/kotlin-analytics'
-    gitUrl = 'https://github.com/sofakingforever/kotlin-analytics.git'
+    siteUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics'
+    gitUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics.git'
 
 
     developerId = 'sofakingforever'

@@ -1,7 +1,7 @@
 package com.sofakingforever.example.events
 
 import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.kits.AnalyticsKit
+import com.sofakingforever.analytics.AnalyticsKit
 
 class ParameterizedEvent(private val isFirstClick : Boolean, private val timeClicked: Long) : AnalyticsEvent {
     override fun getEventName(kit: AnalyticsKit): String = "Event With Parameters"

@@ -6,7 +6,6 @@ import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.events.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedAnalyticsEventException
-import com.sofakingforever.analytics.kits.AnalyticsKit
 
 interface AnalyticsDispatcher {
 

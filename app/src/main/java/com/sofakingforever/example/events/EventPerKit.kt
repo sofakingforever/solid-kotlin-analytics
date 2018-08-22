@@ -1,9 +1,7 @@
 package com.sofakingforever.example.events
 
 import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.kits.AnalyticsKit
-import com.sofakingforever.analytics.kits.AnswersKit
-import com.sofakingforever.analytics.kits.FirebaseKit
+import com.sofakingforever.analytics.AnalyticsKit
 
 class EventPerKit(private val whatever: Boolean) : AnalyticsEvent {
     override fun getEventName(kit: AnalyticsKit): String = when (kit) {
