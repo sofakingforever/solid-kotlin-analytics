@@ -81,4 +81,4 @@ class SimpleEvent : CustomEvent {
 - [x] Add Documentation
 - [ ] Who knows... :o
 
-### Originally developed for [Wakey - Beautiful Alarm Clock](http://bit.ly/2Pmlwhg)
+### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)
