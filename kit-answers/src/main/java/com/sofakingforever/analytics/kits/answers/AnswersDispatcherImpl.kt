@@ -2,15 +2,8 @@ package com.sofakingforever.analytics.kits.answers
 
 import android.content.Context
 import com.crashlytics.android.answers.Answers
-import com.crashlytics.android.answers.ContentViewEvent
-import com.crashlytics.android.answers.CustomEvent
-import com.crashlytics.android.answers.InviteEvent
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
-import com.sofakingforever.analytics.events.Event
-import com.sofakingforever.analytics.kits.answers.AnswersKit
+import com.sofakingforever.analytics.events.SetUserProperty
 import io.fabric.sdk.android.Fabric
 
 /**
@@ -23,25 +16,30 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override val kit = AnswersKit.instance
 
+    val instance: Answers by lazy { Answers.getInstance() }
+
     override fun initDispatcher(context: Context) {
         Fabric.with(context, Answers())
     }
 
-    override fun trackCustomEvent(event: AnalyticsEvent) {
-        Answers.getInstance().logCustom(event.createAnswersAnalyticsEvent())
+    override fun trackCustomEvent(event: com.sofakingforever.analytics.events.CustomEvent) {
+        instance.logCustom(event.createAnswersAnalyticsEvent())
     }
 
-    override fun trackContentView(contentView: AnalyticsContentView) {
-        Answers.getInstance().logContentView(contentView.createAnswersEvent())
+    override fun trackContentView(contentView: com.sofakingforever.analytics.events.ContentViewEvent) {
+        instance.logContentView(contentView.createAnswersEvent())
     }
 
-    override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
-        Answers.getInstance().logInvite(inviteEvent.createAnswersInviteEvent())
+    override fun trackInviteEvent(inviteEvent: com.sofakingforever.analytics.events.InviteEvent) {
+        instance.logInvite(inviteEvent.createAnswersInviteEvent())
     }
 
+    override fun setUserProperty(property: SetUserProperty) {
+        // Answers doesn't support this
+    }
 
-    private fun AnalyticsEvent.createAnswersAnalyticsEvent(): CustomEvent {
-        return CustomEvent(this.getEventName(kit))
+    private fun com.sofakingforever.analytics.events.CustomEvent.createAnswersAnalyticsEvent(): com.crashlytics.android.answers.CustomEvent {
+        return com.crashlytics.android.answers.CustomEvent(this.getEventName(kit))
                 .apply {
 
                     this@createAnswersAnalyticsEvent.getParameters(kit)
@@ -61,12 +59,12 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     }
 
 
-    private fun AnalyticsContentView.createAnswersEvent(): ContentViewEvent {
-        return ContentViewEvent().putContentName(this.getViewName(kit))
+    private fun com.sofakingforever.analytics.events.ContentViewEvent.createAnswersEvent(): com.crashlytics.android.answers.ContentViewEvent {
+        return com.crashlytics.android.answers.ContentViewEvent().putContentName(this.getViewName(kit))
     }
 
-    private fun AnalyticsInviteEvent.createAnswersInviteEvent(): InviteEvent {
-        return InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
+    private fun com.sofakingforever.analytics.events.InviteEvent.createAnswersInviteEvent(): com.crashlytics.android.answers.InviteEvent {
+        return com.crashlytics.android.answers.InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 
 }

@@ -3,13 +3,14 @@ package com.sofakingforever.analytics.kits.flurry
 import android.content.Context
 import com.flurry.android.FlurryAgent
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperty
 
-class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : AnalyticsDispatcher {
+class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
-    constructor() : this(false, "")
+    override val init: Boolean = true
 
     override val kit = FlurryKit.instance
 
@@ -20,22 +21,25 @@ class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : Ana
 
     }
 
-    override fun trackCustomEvent(event: AnalyticsEvent) {
+    override fun trackCustomEvent(event: CustomEvent) {
 
 
         FlurryAgent.logEvent(event.getEventName(kit), event.createFlurryAnalyticsMap())
     }
 
-    override fun trackContentView(contentView: AnalyticsContentView) {
+    override fun trackContentView(contentView: ContentViewEvent) {
         FlurryAgent.logEvent("contentView_" + contentView.getViewName(kit))
     }
 
-    override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
+    override fun trackInviteEvent(inviteEvent: InviteEvent) {
         FlurryAgent.logEvent("inviteEvent_" + inviteEvent.packageName)
 
     }
+    override fun setUserProperty(property: SetUserProperty) {
+        // Flurry doesn't support this as far as I know
+    }
 
-    private fun AnalyticsEvent.createFlurryAnalyticsMap(): MutableMap<String, String> {
+    private fun CustomEvent.createFlurryAnalyticsMap(): MutableMap<String, String> {
         val map: MutableMap<String, String> = mutableMapOf()
 
         this.getParameters(kit).forEach {

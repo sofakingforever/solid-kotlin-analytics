@@ -4,8 +4,10 @@ import android.app.Application
 import android.util.Log
 import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
+import com.sofakingforever.analytics.kits.answers.AnswersDispatcherImpl
+import com.sofakingforever.analytics.kits.firebase.FirebaseDispatcherImpl
 import com.sofakingforever.example.custom.CustomDispatcher
-import com.sofakingforever.example.custom.LoggerDispatcherImpl
+import com.sofakingforever.analytics.kits.logger.LoggerDispatcherImpl
 
 class App : Application() {
 

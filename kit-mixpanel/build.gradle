@@ -38,6 +38,10 @@ android {
     }
 
 }
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -49,23 +53,25 @@ dependencies {
 
     implementation project(':analytics')
 
-    // Flurry Analytics
-    implementation 'com.flurry.android:analytics:11.1.1@aar'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // MixPanel SDK
+    implementation "com.mixpanel.android:mixpanel-android:5.+"
 
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+
 
 
 ext {
     bintrayRepo = 'analytics'
-    bintrayName = 'kit-flurry'
+    bintrayName = 'kit-mixpanel'
 
     publishedGroupId = 'com.sofakingforever.analytics'
-    artifact = 'kit-flurry'
-    libraryName = 'kit-flurry'
+    artifact = 'kit-mixpanel'
+    libraryName = 'kit-mixpanel'
     libraryVersion = versionNameStr
 
-    libraryDescription = 'Flurry Implementation for kotlin-analytics'
+    libraryDescription = 'MixPanel Implementation for kotlin-analytics.'
 
     siteUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics'
     gitUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics.git'
@@ -162,7 +168,4 @@ bintray {
             desc = libraryDescription
         }
     }
-}
-repositories {
-    mavenCentral()
 }

@@ -1,3 +1,6 @@
+[ ![Bintray](https://api.bintray.com/packages/sofakingforever/analytics/kotlin-analytics/images/download.svg) ](https://bintray.com/sofakingforever/analytics/kotlin-analytics/_latestVersion)
+
+
 # SOLID Android Client Kotlin Analytics Interface
 
 ![fancy-diagram](https://cdn-images-1.medium.com/max/2000/1*WS5jAiurPYSrY_RdGDK8pQ.png)
@@ -11,16 +14,30 @@ This library demonstrates how you could decouple analytics libraries from your b
 
 ## Quick Start Guide
 
+#### UPDATE: Both repo and libraries were changed. Please update your implementation!
 ### Add To Gradle
 Add library to your gradle module
 
 ```gradle
 repositories {
-    maven { url "http://dl.bintray.com/sofakingforever/libraries" }
+    maven { url "http://dl.bintray.com/sofakingforever/analytics" }
 }
 
 dependencies {
-    compile 'com.sofakingforever.libraries:analytics:1.0.2@aar'
+
+    def version = '1.0.10'
+
+    // add the basic analytics interface library
+    compile "com.sofakingforever.analytics:analytics:version@aar"
+
+    // then add the kits you need
+    compile "com.sofakingforever.analytics:kit-answers:version@aar"
+    compile "com.sofakingforever.analytics:kit-firebase:version@aar"
+    compile "com.sofakingforever.analytics:kit-flurry:version@aar"
+    compile "com.sofakingforever.analytics:kit-mixpanel:version@aar"
+
+    // or implement your own kit/dispatcher
+
 }
 ```
 
@@ -29,13 +46,13 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(this, AnswersDispatcherImpl(init = true), FirebaseDispatcherImpl(init = true))
+analytics = Analytics(this, AnswersDispatcherImpl(), FirebaseDispatcherImpl())
 
 // send event
 analytics.track(SimpleEvent())
 
 // declare event - will be sent to both Answers and Firebase
-class SimpleEvent : AnalyticsEvent {
+class SimpleEvent : CustomEvent {
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
 }
@@ -43,12 +60,6 @@ class SimpleEvent : AnalyticsEvent {
 
 ### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
-## Dispatchers Currently Available
-* Fabric Answers
-* Google Firebase
-* Yahoo Flurry
-* Logger (prints to logcat)
-* Build your own Dispatcher :)
 
 ## Todo List
 
@@ -61,8 +72,7 @@ class SimpleEvent : AnalyticsEvent {
 - [x] Add Flurry Default Implementation
 - [x] Add Example Code to App Module
 - [x] Add Example Code to README
-- [ ] Add Documentation
-- [ ] Additional Common Dispatchers?
-- [ ] Anything else important..?
+- [x] Add Documentation
+- [ ] Who knows... :o
 
-### Originally developed for [Wakey - Beautiful Alarm Clock](http://bit.ly/2Pmlwhg)
+### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)

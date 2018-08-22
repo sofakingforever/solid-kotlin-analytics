@@ -1,4 +1,4 @@
-package com.sofakingforever.example.custom
+package com.sofakingforever.analytics.kits.logger
 
 import com.sofakingforever.analytics.AnalyticsKit
 

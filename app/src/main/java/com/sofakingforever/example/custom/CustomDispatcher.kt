@@ -2,9 +2,9 @@ package com.sofakingforever.example.custom
 
 import android.content.Context
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.AnalyticsKit
 
 /**
@@ -20,15 +20,15 @@ class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
         // call custom analytics initiation function
     }
 
-    override fun trackContentView(contentView: AnalyticsContentView) {
+    override fun trackContentView(contentView: ContentViewEvent) {
         // track content view
     }
 
-    override fun trackCustomEvent(event: AnalyticsEvent) {
+    override fun trackCustomEvent(event: CustomEvent) {
         // track event
     }
 
-    override fun trackInviteEvent(inviteEvent: AnalyticsInviteEvent) {
+    override fun trackInviteEvent(inviteEvent: InviteEvent) {
         // track invite event
     }
 
