@@ -56,7 +56,7 @@ repositories {
     mavenCentral()
 }
 ext {
-    bintrayRepo = 'libraries'
+    bintrayRepo = 'analytics'
     bintrayName = 'kotlin-analytics'
 
     publishedGroupId = 'com.sofakingforever.libraries'
