@@ -3,6 +3,7 @@ package com.sofakingforever.analytics.kits.answers
 import android.content.Context
 import com.crashlytics.android.answers.Answers
 import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.events.SetUserProperty
 import io.fabric.sdk.android.Fabric
 
 /**
@@ -15,22 +16,27 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override val kit = AnswersKit.instance
 
+    val instance: Answers by lazy { Answers.getInstance() }
+
     override fun initDispatcher(context: Context) {
         Fabric.with(context, Answers())
     }
 
     override fun trackCustomEvent(event: com.sofakingforever.analytics.events.CustomEvent) {
-        Answers.getInstance().logCustom(event.createAnswersAnalyticsEvent())
+        instance.logCustom(event.createAnswersAnalyticsEvent())
     }
 
     override fun trackContentView(contentView: com.sofakingforever.analytics.events.ContentViewEvent) {
-        Answers.getInstance().logContentView(contentView.createAnswersEvent())
+        instance.logContentView(contentView.createAnswersEvent())
     }
 
     override fun trackInviteEvent(inviteEvent: com.sofakingforever.analytics.events.InviteEvent) {
-        Answers.getInstance().logInvite(inviteEvent.createAnswersInviteEvent())
+        instance.logInvite(inviteEvent.createAnswersInviteEvent())
     }
 
+    override fun setUserProperty(property: SetUserProperty) {
+        // Answers doesn't support this
+    }
 
     private fun com.sofakingforever.analytics.events.CustomEvent.createAnswersAnalyticsEvent(): com.crashlytics.android.answers.CustomEvent {
         return com.crashlytics.android.answers.CustomEvent(this.getEventName(kit))

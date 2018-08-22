@@ -4,6 +4,7 @@ import android.content.Context
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperty
 import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 
@@ -31,6 +32,8 @@ interface AnalyticsDispatcher {
     fun trackCustomEvent(event: CustomEvent)
 
     fun trackInviteEvent(inviteEvent: InviteEvent)
+
+    fun setUserProperty(property : SetUserProperty)
 
     /**
      * This method is called from the parent @Analytics class for each event.

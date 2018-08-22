@@ -6,10 +6,11 @@ import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperty
 
-class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : AnalyticsDispatcher {
+class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
-    constructor() : this(false, "")
+    override val init: Boolean = true
 
     override val kit = FlurryKit.instance
 
@@ -33,6 +34,9 @@ class FlurryDispatcherImpl(override val init: Boolean, val apiKey: String) : Ana
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
         FlurryAgent.logEvent("inviteEvent_" + inviteEvent.packageName)
 
+    }
+    override fun setUserProperty(property: SetUserProperty) {
+        // Flurry doesn't support this as far as I know
     }
 
     private fun CustomEvent.createFlurryAnalyticsMap(): MutableMap<String, String> {
