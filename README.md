@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.7'
+    def version = '1.0.8'
 
     // add the basic analytics interface library
     compile "com.sofakingforever.analytics:analytics:version@aar"
