@@ -51,7 +51,7 @@ analytics = Analytics(this, AnswersDispatcherImpl(init = true), FirebaseDispatch
 analytics.track(SimpleEvent())
 
 // declare event - will be sent to both Answers and Firebase
-class SimpleEvent : AnalyticsEvent {
+class SimpleEvent : CustomEvent {
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
 }
