@@ -14,13 +14,22 @@ This library demonstrates how you could decouple analytics libraries from your b
 ### Add To Gradle
 Add library to your gradle module
 
+#### UPDATE: Both reporsitory and libraries were changed. Please advise the example below
+
 ```gradle
 repositories {
     maven { url "http://dl.bintray.com/sofakingforever/libraries" }
 }
 
 dependencies {
-    compile 'com.sofakingforever.libraries:analytics:1.0.2@aar'
+
+    def analyticsVersion = '1.0.5'
+
+    compile "com.sofakingforever.analytics:analytics:$analyticsVersion@aar"
+    compile "com.sofakingforever.analytics:kit-flurry:$analyticsVersion@aar"
+    compile "com.sofakingforever.analytics:kit-answers:$analyticsVersion@aar"
+    compile "com.sofakingforever.analytics:kit-firebase:$analyticsVersion@aar"
+
 }
 ```
 
