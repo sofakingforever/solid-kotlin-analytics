@@ -2,14 +2,15 @@ package com.sofakingforever.analytics
 
 import android.content.Context
 import android.util.Log
-import com.sofakingforever.analytics.events.AnalyticsContentView
-import com.sofakingforever.analytics.events.AnalyticsEvent
-import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 import com.sofakingforever.analytics.events.Event
-import com.sofakingforever.analytics.exceptions.UnsupportedAnalyticsEventException
 
 /**
- * Keep an instance of this to track any event through any dispatcher
+ * The *Analytics* class is in charge of tracking any *Event* implementation.
+ *
+ * @property context any context from the app
+ * @property dispatchers list of *AnalyticsDispatchers* to trigger for every event
+ *
+ * @constructor create an instance of the *Analytics* class
  */
 class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispatcher) {
 
@@ -24,7 +25,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
     }
 
     /**
-     * Call this to track one or more events
+     * Call this to track one or more *Events*
      */
     fun track(vararg events: Event) {
 

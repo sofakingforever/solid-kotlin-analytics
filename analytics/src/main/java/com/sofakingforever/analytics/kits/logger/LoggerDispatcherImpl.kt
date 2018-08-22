@@ -1,4 +1,4 @@
-package com.sofakingforever.example.custom
+package com.sofakingforever.analytics.kits.logger
 
 import android.content.Context
 import android.util.Log
@@ -9,13 +9,17 @@ import com.sofakingforever.analytics.events.AnalyticsEvent
 import com.sofakingforever.analytics.events.AnalyticsInviteEvent
 
 /**
- * Look at AnswersDispatcher, FirebaseDispatcher or FlurryDispatcher to know more
+ * This is just a logger implementation, Use this if you're in DEBUG mode.
+ *
+ * Look at AnswersDispatcher or FirebaseDispatcher to learn more about
+ * how to implement your own service dispatcher.
  */
 class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
+
     constructor() : this(true)
 
-    val tag = "LoggerDispatcher"
+    private val tag = "LoggerDispatcher"
 
     override val kit: AnalyticsKit = LoggerKit.instance
 
