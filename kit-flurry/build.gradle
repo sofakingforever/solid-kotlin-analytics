@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
@@ -50,6 +51,7 @@ dependencies {
 
     // Flurry Analytics
     implementation 'com.flurry.android:analytics:11.1.1@aar'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
@@ -160,4 +162,7 @@ bintray {
             desc = libraryDescription
         }
     }
+}
+repositories {
+    mavenCentral()
 }
