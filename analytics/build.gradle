@@ -66,8 +66,8 @@ ext {
 
     libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
 
-    siteUrl = 'https://github.com/sofakingforever/kotlin-analytics'
-    gitUrl = 'https://github.com/sofakingforever/kotlin-analytics.git'
+    siteUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics'
+    gitUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics.git'
 
 
     developerId = 'sofakingforever'
