@@ -1,5 +1,7 @@
 package com.sofakingforever.analytics.kits.flurry
 
+import com.sofakingforever.analytics.AnalyticsKit
+
 class FlurryKit private constructor() : AnalyticsKit {
 
     override val name: String = "flurry"
