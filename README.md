@@ -11,10 +11,9 @@ This library demonstrates how you could decouple analytics libraries from your b
 
 ## Quick Start Guide
 
+#### UPDATE: Both repo and libraries were changed. Please update your implementation!
 ### Add To Gradle
 Add library to your gradle module
-
-#### UPDATE: Both reporsitory and libraries were changed. Please advise the example below
 
 ```gradle
 repositories {
