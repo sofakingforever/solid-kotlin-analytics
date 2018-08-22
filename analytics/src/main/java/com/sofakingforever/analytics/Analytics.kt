@@ -47,5 +47,12 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
         }
     }
 
+    fun setKitEnabled(kit: AnalyticsKit, enabled : Boolean){
+        dispatchers.forEach { dispatcher ->
+            if (dispatcher.kit == kit){
+                dispatcher.enabled = enabled
+            }
+        }
+    }
 
 }

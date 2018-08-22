@@ -14,6 +14,8 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     constructor() : this(true)
 
+    override var enabled: Boolean = true
+
     override val kit = AnswersKit.instance
 
     val instance: Answers by lazy { Answers.getInstance() }
