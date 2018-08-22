@@ -25,15 +25,16 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.9'
+    def version = '1.0.10'
 
     // add the basic analytics interface library
     compile "com.sofakingforever.analytics:analytics:version@aar"
 
     // then add the kits you need
-    compile "com.sofakingforever.analytics:kit-flurry:version@aar"
     compile "com.sofakingforever.analytics:kit-answers:version@aar"
     compile "com.sofakingforever.analytics:kit-firebase:version@aar"
+    compile "com.sofakingforever.analytics:kit-flurry:version@aar"
+    compile "com.sofakingforever.analytics:kit-mixpanel:version@aar"
 
     // or implement your own kit/dispatcher
 
@@ -45,7 +46,7 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(this, AnswersDispatcherImpl(init = true), FirebaseDispatcherImpl(init = true))
+analytics = Analytics(this, AnswersDispatcherImpl(), FirebaseDispatcherImpl())
 
 // send event
 analytics.track(SimpleEvent())
@@ -77,8 +78,7 @@ class SimpleEvent : CustomEvent {
 - [x] Add Flurry Default Implementation
 - [x] Add Example Code to App Module
 - [x] Add Example Code to README
-- [ ] Add Documentation
-- [ ] Additional Common Dispatchers?
-- [ ] Anything else important..?
+- [x] Add Documentation
+- [ ] Who knows... :o
 
 ### Originally developed for [Wakey - Beautiful Alarm Clock](http://bit.ly/2Pmlwhg)
