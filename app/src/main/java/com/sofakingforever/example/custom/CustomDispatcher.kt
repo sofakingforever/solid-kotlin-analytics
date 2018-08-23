@@ -17,7 +17,7 @@ class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
 
     constructor() : this(true)
 
-    override var enabled: Boolean = true
+
 
     override val kit: AnalyticsKit = CustomKit.instance
 

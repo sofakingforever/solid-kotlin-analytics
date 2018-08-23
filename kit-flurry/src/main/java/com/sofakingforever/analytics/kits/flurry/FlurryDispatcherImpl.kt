@@ -14,8 +14,6 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
     override val init: Boolean = true
 
-    override var enabled: Boolean = true
-
     override val kit = FlurryKit.instance
 
     override fun initDispatcher(context: Context) {

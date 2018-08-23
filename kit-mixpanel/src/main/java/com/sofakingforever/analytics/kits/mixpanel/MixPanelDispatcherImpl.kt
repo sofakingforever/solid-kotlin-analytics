@@ -15,7 +15,7 @@ class MixPanelDispatcherImpl(override val init: Boolean = false, private val pro
 
     override val dispatcherName: String = DispatcherName
 
-    override var enabled: Boolean = true
+
 
     override val kit: AnalyticsKit = MixPanelKit.instance
 

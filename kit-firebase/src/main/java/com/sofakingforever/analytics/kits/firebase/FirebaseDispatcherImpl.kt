@@ -17,8 +17,6 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override val kit = FirebaseKit.instance
 
-    override var enabled: Boolean = true
-
     var firebaseAnalytics: FirebaseAnalytics? = null
 
 

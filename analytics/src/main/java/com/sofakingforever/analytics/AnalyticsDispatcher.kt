@@ -22,9 +22,6 @@ interface AnalyticsDispatcher {
     val kit: AnalyticsKit
 
     val dispatcherName : String
-
-    var enabled: Boolean
-
     /**
      * Should call the analytics library's initiation methods
      */

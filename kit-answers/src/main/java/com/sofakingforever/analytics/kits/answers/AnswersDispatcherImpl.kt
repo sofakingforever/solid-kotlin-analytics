@@ -14,8 +14,6 @@ class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> =
 
     override val dispatcherName: String = DispatcherName
 
-    override var enabled: Boolean = true
-
     override val kit = AnswersKit.instance
 
     private val instance: Answers by lazy { Answers.getInstance() }
