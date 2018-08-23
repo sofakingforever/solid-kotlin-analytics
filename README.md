@@ -66,6 +66,7 @@ class SimpleEvent : CustomEvent {
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
 }
+```
 
 ### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
