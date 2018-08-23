@@ -18,10 +18,14 @@ class App : Application() {
 
         // init analytics property. this is in charge of tracking all events
         analytics = Analytics(this,
-                CustomDispatcher(true),
-                LoggerDispatcherImpl(),
-                AnswersDispatcherImpl(true),
-                FirebaseDispatcherImpl(true))
+                CustomDispatcher(init = true),
+                LoggerDispatcherImpl(init = true),
+                FirebaseDispatcherImpl(init = true),
+                AnswersDispatcherImpl(init = true)
+
+//              if you're using crashlytics, or any other fabric kit in addition to Answers
+//              AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
+        )
 
 
         analytics.settings.apply {
