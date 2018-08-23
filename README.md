@@ -51,7 +51,8 @@ analytics = Analytics(context = context,
                 MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
                 AnswersDispatcherImpl(init = true))
                 
-// Use this constructor for Answers if you're using crashlytics, or any other fabric kit in addition to Answers:
+// Use this constructor for Answers if you're using crashlytics,
+// or any other fabric kit in addition to Answers:
 AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
 
 // send event
