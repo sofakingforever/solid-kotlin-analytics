@@ -21,6 +21,8 @@ interface AnalyticsDispatcher {
 
     val kit: AnalyticsKit
 
+    val dispatcherName : String
+
     var enabled: Boolean
 
     /**

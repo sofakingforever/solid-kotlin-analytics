@@ -17,11 +17,13 @@ import com.sofakingforever.analytics.events.SetUserProperty
  */
 class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = "LoggerDispatcher"
+
     constructor() : this(true)
 
     override var enabled: Boolean = true
 
-    private val tag = "LoggerDispatcher"
+    private val tag = dispatcherName
 
     override val kit: AnalyticsKit = LoggerKit.instance
 

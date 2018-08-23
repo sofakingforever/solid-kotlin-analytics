@@ -8,6 +8,7 @@ import com.sofakingforever.analytics.kits.answers.AnswersDispatcherImpl
 import com.sofakingforever.analytics.kits.firebase.FirebaseDispatcherImpl
 import com.sofakingforever.example.custom.CustomDispatcher
 import com.sofakingforever.analytics.kits.logger.LoggerDispatcherImpl
+import com.sofakingforever.analytics.kits.mixpanel.MixPanelDispatcherImpl
 
 class App : Application() {
 
@@ -16,12 +17,15 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+
         // init analytics property. this is in charge of tracking all events
         analytics = Analytics(this,
                 CustomDispatcher(init = true),
                 LoggerDispatcherImpl(init = true),
                 FirebaseDispatcherImpl(init = true),
+                MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
                 AnswersDispatcherImpl(init = true)
+
 
 //              if you're using crashlytics, or any other fabric kit in addition to Answers
 //              AnswersDispatcherImpl(init = true, Answers(), Crashlytics())

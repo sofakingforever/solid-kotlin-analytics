@@ -10,9 +10,12 @@ import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.events.SetUserProperty
 
 
-class MixPanelDispatcherImpl(override val init: Boolean, private val projectToken: String) : AnalyticsDispatcher {
+class MixPanelDispatcherImpl(override val init: Boolean = false, private val projectToken: String? = null) : AnalyticsDispatcher {
 
-    override val dispatcherName: String = "DefaultMixPanelDispatcher"
+
+    override val dispatcherName: String = DispatcherName
+
+    override var enabled: Boolean = true
 
     override val kit: AnalyticsKit = MixPanelKit.instance
 
@@ -38,4 +41,7 @@ class MixPanelDispatcherImpl(override val init: Boolean, private val projectToke
         mixpanel.people.set(property.key, property.value)
     }
 
+    companion object {
+        const val DispatcherName = "DefaultMixPanelDispatcher"
+    }
 }

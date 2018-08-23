@@ -13,6 +13,7 @@ import com.sofakingforever.analytics.events.SetUserProperty
  */
 class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = "CustomEmptyDispatcher"
 
     constructor() : this(true)
 

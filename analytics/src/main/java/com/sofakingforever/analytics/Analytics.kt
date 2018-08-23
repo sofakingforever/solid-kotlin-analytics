@@ -32,9 +32,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
         if (settings.isAnalyticsEnabled.not()) return
 
         events.forEach {
-
             dispatchers.forEach { dispatcher ->
-
                 try {
                     dispatcher.track(it)
                 } catch (e: Exception) {
@@ -48,9 +46,17 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
     }
 
     fun setKitEnabled(kit: AnalyticsKit, enabled: Boolean) {
-        dispatchers.filter { k -> k == kit }.forEach { dispatcher ->
-            dispatcher.enabled = enabled
-        }
+        dispatchers.filter { d -> d.kit == kit }
+                .forEach { dispatcher ->
+                    dispatcher.enabled = enabled
+                }
+    }
+
+    fun setDispatcherEnabled(dispatcherName: String, enabled: Boolean) {
+        dispatchers.filter { d -> d.dispatcherName == dispatcherName }
+                .forEach { dispatcher ->
+                    dispatcher.enabled = enabled
+                }
     }
 
 }

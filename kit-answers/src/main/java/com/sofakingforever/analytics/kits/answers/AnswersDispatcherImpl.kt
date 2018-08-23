@@ -12,6 +12,8 @@ import io.fabric.sdk.android.Kit
  */
 class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> = Answers()) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = DispatcherName
+
     override var enabled: Boolean = true
 
     override val kit = AnswersKit.instance
@@ -68,5 +70,8 @@ class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> =
         return com.crashlytics.android.answers.InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 
+    companion object {
+        const val DispatcherName = "DefaultAnswersDispatcher"
+    }
 }
 
