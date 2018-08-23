@@ -22,7 +22,6 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     constructor() : this(true)
 
 
-
     private val tag = dispatcherName
 
     override val kit: AnalyticsKit = LoggerKit.instance
@@ -42,7 +41,8 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
         Log.d(tag, "Tracking inviteEvent ${inviteEvent.packageName}")
     }
+
     override fun setUserProperty(property: SetUserProperty) {
-        // used only for certain analytics
+        Log.d(tag, "Tracking user property ${property.key} = ${property.value}")
     }
 }
