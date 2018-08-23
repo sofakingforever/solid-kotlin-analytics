@@ -68,11 +68,7 @@ class SimpleEvent : CustomEvent {
 }
 ```
 
-### See more integration examples in the [source code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example)
-
-### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)
-
-![Wakey Alarm Clock](https://cdn-images-1.medium.com/max/2000/1*DhcklS1xNZwHogX0wDQEyw.png)
+#### See more integration examples in the [source code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example)
 
 ## Todo List
 
@@ -89,4 +85,8 @@ class SimpleEvent : CustomEvent {
 - [x] Add Unit Tests
 - [ ] Who knows... :o
 
+
+### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)
+
+![Wakey Alarm Clock](https://cdn-images-1.medium.com/max/2000/1*DhcklS1xNZwHogX0wDQEyw.png)
 
