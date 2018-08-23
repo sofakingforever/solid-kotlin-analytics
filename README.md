@@ -25,9 +25,9 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.10'
+    def version = '1.0.11'
 
-    // add the basic analytics interface library
+    // add the basic analytics interface library - incl. LoggerDispatcher
     compile "com.sofakingforever.analytics:analytics:version@aar"
 
     // then add the kits you need
@@ -46,12 +46,15 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(this, AnswersDispatcherImpl(), FirebaseDispatcherImpl())
+analytics = Analytics(context = context,
+                FirebaseDispatcherImpl(init = true),
+                MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
+                AnswersDispatcherImpl(init = true))
 
 // send event
 analytics.track(SimpleEvent())
 
-// declare event - will be sent to both Answers and Firebase
+// declare event - will be sent to both Firebase, MixPanel and Answers
 class SimpleEvent : CustomEvent {
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
