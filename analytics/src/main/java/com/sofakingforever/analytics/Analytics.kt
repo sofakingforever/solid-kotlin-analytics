@@ -7,7 +7,7 @@ import com.sofakingforever.analytics.events.base.Event
 /**
  * The *Analytics* class is in charge of tracking any *Event* implementation.
  *
- * @property context any context from the app
+ * @param context any context from the app
  * @property dispatchers list of *AnalyticsDispatchers* to trigger for every event
  *
  * @constructor create an instance of the *Analytics* class
@@ -23,7 +23,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
     init {
         dispatchers.forEach { dispatcher ->
             if (dispatcher.init) {
-                dispatcher.initDispatcher(context)
+                dispatcher.initDispatcher(context.applicationContext)
             }
         }
     }
