@@ -12,6 +12,8 @@ import com.sofakingforever.analytics.events.SetUserProperty
 
 class MixPanelDispatcherImpl(override val init: Boolean, private val projectToken: String) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = "DefaultMixPanelDispatcher"
+
     override val kit: AnalyticsKit = MixPanelKit.instance
 
     private lateinit var mixpanel: MixpanelAPI
