@@ -68,7 +68,7 @@ class SimpleEvent : CustomEvent {
 }
 ```
 
-### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
+### See more integration examples in the [source code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example)
 
 
 ## Todo List
