@@ -2,17 +2,22 @@ package com.sofakingforever.example.custom
 
 import android.content.Context
 import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.AnalyticsKit
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.AnalyticsKit
+import com.sofakingforever.analytics.events.SetUserProperty
 
 /**
  * Look at any of the library's Dispatcher Implementations to learn how to implement one yourself
  */
 class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = "CustomEmptyDispatcher"
+
     constructor() : this(true)
+
+
 
     override val kit: AnalyticsKit = CustomKit.instance
 
@@ -32,4 +37,7 @@ class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
         // track invite event
     }
 
+    override fun setUserProperty(property: SetUserProperty) {
+        // set user property
+    }
 }

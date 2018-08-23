@@ -10,6 +10,8 @@ import com.sofakingforever.analytics.events.SetUserProperty
 
 class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = DispatcherName
+
     override val init: Boolean = true
 
     override val kit = FlurryKit.instance
@@ -59,6 +61,11 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
         }
 
         return map
+    }
+
+
+    companion object {
+        const val DispatcherName = "DefaultFlurryDispatcher"
     }
 
 }

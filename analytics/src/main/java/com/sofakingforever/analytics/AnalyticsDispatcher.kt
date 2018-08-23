@@ -21,6 +21,7 @@ interface AnalyticsDispatcher {
 
     val kit: AnalyticsKit
 
+    val dispatcherName : String
     /**
      * Should call the analytics library's initiation methods
      */
@@ -33,7 +34,7 @@ interface AnalyticsDispatcher {
 
     fun trackInviteEvent(inviteEvent: InviteEvent)
 
-    fun setUserProperty(property : SetUserProperty)
+    fun setUserProperty(property: SetUserProperty)
 
     /**
      * This method is called from the parent @Analytics class for each event.
