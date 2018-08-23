@@ -14,6 +14,10 @@ import com.sofakingforever.analytics.events.base.Event
  */
 class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispatcher) {
 
+
+    private val enabledKitMap: EnabledMap<AnalyticsKit> = EnabledMap()
+    private val enabledDispatcherMap: EnabledMap<String> = EnabledMap()
+
     val settings: AnalyticsSettings = AnalyticsSettings()
 
     init {
@@ -33,6 +37,13 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
         events.forEach {
             dispatchers.forEach { dispatcher ->
+
+                if (enabledKitMap.isDisabled(dispatcher.kit)) {
+                    return
+                }
+                if (enabledDispatcherMap.isDisabled(dispatcher.dispatcherName)) {
+                    return
+                }
                 try {
                     dispatcher.track(it)
                 } catch (e: Exception) {
@@ -46,17 +57,19 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
     }
 
     fun setKitEnabled(kit: AnalyticsKit, enabled: Boolean) {
-        dispatchers.filter { d -> d.kit == kit }
-                .forEach { dispatcher ->
-                    dispatcher.enabled = enabled
-                }
+        enabledKitMap[kit] = enabled
+//        dispatchers.filter { d -> d.kit == kit }
+//                .forEach { dispatcher ->
+//
+//                }
     }
 
     fun setDispatcherEnabled(dispatcherName: String, enabled: Boolean) {
-        dispatchers.filter { d -> d.dispatcherName == dispatcherName }
-                .forEach { dispatcher ->
-                    dispatcher.enabled = enabled
-                }
+        enabledDispatcherMap[dispatcherName] = enabled
+//        dispatchers.filter { d -> d.dispatcherName == dispatcherName }
+//                .forEach { dispatcher ->
+//                    dispatcher.enabled = enabled
+//                }
     }
 
 }
