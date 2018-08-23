@@ -50,16 +50,21 @@ analytics = Analytics(context = context,
                 FirebaseDispatcherImpl(init = true),
                 MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
                 AnswersDispatcherImpl(init = true))
+                
+// Use this constructor for Answers if you're using crashlytics, or any other fabric kit in addition to Answers:
+AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
 
 // send event
 analytics.track(SimpleEvent())
+```
 
-// declare event - will be sent to both Firebase, MixPanel and Answers
+Don't forget to declare the event
+```kotlin
 class SimpleEvent : CustomEvent {
+    // declare name - will be sent to all dispatchers
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
 }
-```
 
 ### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
 
@@ -76,6 +81,7 @@ class SimpleEvent : CustomEvent {
 - [x] Add Example Code to App Module
 - [x] Add Example Code to README
 - [x] Add Documentation
+- [x] Add Unit Tests
 - [ ] Who knows... :o
 
 ### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)
