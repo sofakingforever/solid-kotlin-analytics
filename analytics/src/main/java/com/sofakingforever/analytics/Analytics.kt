@@ -3,6 +3,7 @@ package com.sofakingforever.analytics
 import android.content.Context
 import android.util.Log
 import com.sofakingforever.analytics.events.base.Event
+import com.sofakingforever.analytics.exceptions.EventNotTrackedException
 
 /**
  * The *Analytics* class is in charge of tracking any *Event* implementation.
@@ -47,8 +48,7 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
                 try {
                     dispatcher.track(it)
                 } catch (e: Exception) {
-                    Log.e("Analytics", "${dispatcher.kit.name} dispatcher couldn't fire \"${it.javaClass.name}\" event", e)
-                    settings.exceptionHandler?.onException(e)
+                    settings.exceptionHandler?.onException(EventNotTrackedException(dispatcher, it, e))
                 }
             }
 
@@ -58,18 +58,10 @@ class Analytics(context: Context, private vararg val dispatchers: AnalyticsDispa
 
     fun setKitEnabled(kit: AnalyticsKit, enabled: Boolean) {
         enabledKitMap[kit] = enabled
-//        dispatchers.filter { d -> d.kit == kit }
-//                .forEach { dispatcher ->
-//
-//                }
     }
 
     fun setDispatcherEnabled(dispatcherName: String, enabled: Boolean) {
         enabledDispatcherMap[dispatcherName] = enabled
-//        dispatchers.filter { d -> d.dispatcherName == dispatcherName }
-//                .forEach { dispatcher ->
-//                    dispatcher.enabled = enabled
-//                }
     }
 
 }
