@@ -1,35 +1,46 @@
 package com.sofakingforever.library
 
-import android.app.Application
+import android.content.Context
+import android.util.Log
 import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
+import com.sofakingforever.analytics.exceptions.EventNotTrackedException
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 import com.sofakingforever.library.dispatcher.TestKit
 import com.sofakingforever.library.dispatcher.TestableDispatcher
-import com.sofakingforever.library.events.TestEvent
+import com.sofakingforever.library.events.InitDispatcherEvent
+import com.sofakingforever.library.events.TestContentViewEvent
+import com.sofakingforever.library.events.TestCustomEvent
 import com.sofakingforever.library.events.UnsupportedEvent
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 
 class AnalyticsUnitTest {
 
+    private val contextMock = mock(Context::class.java)
+
+    private lateinit var analytics: Analytics
 
     private val dispatcher = TestableDispatcher()
-    private val analytics = Analytics(Application(), dispatcher).apply {
-
-        // todo - java.lang.RuntimeException: Method e in android.util.Log not mocked. See http://g.co/androidstudio/not-mocked for details.
-        this.log = false
-
-        this.settings.exceptionHandler = object : AnalyticsSettings.ExceptionHandler {
-            override fun onException(e: Exception) {
-                raisedException = e
-            }
-
-        }
-    }
     private var raisedException: Exception? = null
+
+    init {
+        Mockito.`when`(contextMock.applicationContext).thenReturn(contextMock)
+    }
 
     @Test
     fun testAnalytics() {
+
+        analytics = Analytics(contextMock, dispatcher).apply {
+
+            this.settings.exceptionHandler = object : AnalyticsSettings.ExceptionHandler {
+                override fun onException(e: Exception) {
+                    raisedException = e
+                }
+
+            }
+        }
 
         // track some events
         trackTestEvents()
@@ -43,31 +54,35 @@ class AnalyticsUnitTest {
         // track an unsupported event
         analytics.track(UnsupportedEvent())
 
-
-        assert(raisedException != null && raisedException is UnsupportedEventException)
+        // assert UnsupportedEventException was raised
+        assert(raisedException != null)
+        assert(raisedException is EventNotTrackedException)
+        assert((raisedException as EventNotTrackedException).cause is UnsupportedEventException)
 
     }
 
 
     private fun trackTestEvents() {
 
-        analytics.track(TestEvent(1))
+        analytics.track(TestCustomEvent(1))
 
         analytics.setDispatcherEnabled(TestableDispatcher.DispatcherName, false)
 
-        analytics.track(TestEvent(2))
+        analytics.track(TestCustomEvent(2))
 
         analytics.setDispatcherEnabled(TestableDispatcher.DispatcherName, true)
 
-        analytics.track(TestEvent(3))
+        analytics.track(TestCustomEvent(3))
 
         analytics.setKitEnabled(TestKit.instance, false)
 
-        analytics.track(TestEvent(4))
+        analytics.track(TestCustomEvent(4))
 
         analytics.setKitEnabled(TestKit.instance, true)
 
-        analytics.track(TestEvent(5))
+        analytics.track(TestCustomEvent(5))
+
+        analytics.track(TestContentViewEvent(1))
 
     }
 
@@ -77,11 +92,12 @@ class AnalyticsUnitTest {
 
         val eventList = dispatcher.eventList
 
-        // expect to find 3 events + init event
-        assert(eventList.size == 4)
-        assert(eventList[0] is TestableDispatcher.InitEvent)
-        assert((eventList[1] as TestEvent).number == 1)
-        assert((eventList[2] as TestEvent).number == 3)
-        assert((eventList[3] as TestEvent).number == 5)
+        // expect to find 3 custom events , 1 contentview and 1 init event
+        assert(eventList.size == 5)
+        assert(eventList[0] is InitDispatcherEvent)
+        assert((eventList[1] as TestCustomEvent).number == 1)
+        assert((eventList[2] as TestCustomEvent).number == 3)
+        assert((eventList[3] as TestCustomEvent).number == 5)
+        assert((eventList[4] as TestContentViewEvent).number == 1)
     }
 }

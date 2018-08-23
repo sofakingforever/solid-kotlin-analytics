@@ -8,7 +8,7 @@ import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.events.SetUserProperty
 import com.sofakingforever.analytics.events.base.Event
-import com.sofakingforever.library.events.InitTestEvent
+import com.sofakingforever.library.events.InitDispatcherEvent
 
 class TestableDispatcher : AnalyticsDispatcher {
 
@@ -18,11 +18,10 @@ class TestableDispatcher : AnalyticsDispatcher {
 
     override val dispatcherName: String = DispatcherName
 
-
     val eventList: MutableList<Event> = mutableListOf()
 
     override fun initDispatcher(context: Context) {
-        track(InitTestEvent())
+        track(InitDispatcherEvent())
     }
 
     override fun trackContentView(contentView: ContentViewEvent) {
@@ -42,7 +41,7 @@ class TestableDispatcher : AnalyticsDispatcher {
     }
 
     override fun track(event: Event) {
-        if (event is InitTestEvent) {
+        if (event is InitDispatcherEvent) {
             eventList.add(event)
         } else {
             super.track(event)
