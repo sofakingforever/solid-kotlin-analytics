@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.11'
+    def version = '1.0.12'
 
     // add the basic analytics interface library - incl. LoggerDispatcher
     compile "com.sofakingforever.analytics:analytics:version@aar"
