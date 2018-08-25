@@ -48,6 +48,7 @@ interface AnalyticsDispatcher {
                 is CustomEvent -> trackCustomEvent(event)
                 is ContentViewEvent -> trackContentView(event)
                 is InviteEvent -> trackInviteEvent(event)
+                is SetUserProperty -> setUserProperty(event)
                 // alert developer if this is a customized event implementation
                 else -> throw UnsupportedEventException(event)
             }
