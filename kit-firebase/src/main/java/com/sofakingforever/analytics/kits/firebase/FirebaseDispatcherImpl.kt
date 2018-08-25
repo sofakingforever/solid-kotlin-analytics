@@ -11,11 +11,11 @@ import com.sofakingforever.analytics.events.SetUserProperty
 
 class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
+    override val dispatcherName: String = DispatcherName
+
     constructor() : this(true)
 
     override val kit = FirebaseKit.instance
-
-    override var enabled: Boolean = true
 
     var firebaseAnalytics: FirebaseAnalytics? = null
 
@@ -84,5 +84,8 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         return bundle
     }
 
+    companion object {
+        const val DispatcherName = "DefaultFirebaseDispatcher"
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.sofakingforever.example
 
 import android.os.Bundle
+import com.sofakingforever.analytics.kits.answers.AnswersDispatcherImpl
 import com.sofakingforever.analytics.kits.answers.AnswersKit
 import com.sofakingforever.example.events.EventPerKit
 import com.sofakingforever.example.events.MainContentView
@@ -42,7 +43,11 @@ class MainActivity : BaseActivity() {
 
             // don't track event on first click
             if (isFirstClick) {
+                // for any implementation on Kit
                 analytics.setKitEnabled(AnswersKit.instance, false)
+
+                // for specific implementation of Dispatcher
+                analytics.setDispatcherEnabled(AnswersDispatcherImpl.DispatcherName, false)
             }
 
             analytics.track(ParameterizedEvent(isFirstClick, System.currentTimeMillis()))
@@ -50,6 +55,8 @@ class MainActivity : BaseActivity() {
             // but turn in back on for later
             if (isFirstClick) {
                 analytics.setKitEnabled(AnswersKit.instance, true)
+
+                analytics.setDispatcherEnabled(AnswersDispatcherImpl.DispatcherName, true)
             }
 
             isFirstClick = false

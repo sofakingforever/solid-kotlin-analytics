@@ -5,23 +5,22 @@ import com.crashlytics.android.answers.Answers
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.events.SetUserProperty
 import io.fabric.sdk.android.Fabric
+import io.fabric.sdk.android.Kit
 
 /**
- *
+ * @property - fabricKits - if you use this property, you must include a new Answers instance
  */
-class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> = Answers()) : AnalyticsDispatcher {
 
-
-    constructor() : this(true)
-
-    override var enabled: Boolean = true
+    override val dispatcherName: String = DispatcherName
 
     override val kit = AnswersKit.instance
 
-    val instance: Answers by lazy { Answers.getInstance() }
+    private val instance: Answers by lazy { Answers.getInstance() }
 
     override fun initDispatcher(context: Context) {
-        Fabric.with(context, Answers())
+        // init Fabric with Answers, and any additonal fabric kits supplied
+        Fabric.with(context, fabricKits)
     }
 
     override fun trackCustomEvent(event: com.sofakingforever.analytics.events.CustomEvent) {
@@ -69,5 +68,8 @@ class AnswersDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         return com.crashlytics.android.answers.InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 
+    companion object {
+        const val DispatcherName = "DefaultAnswersDispatcher"
+    }
 }
 

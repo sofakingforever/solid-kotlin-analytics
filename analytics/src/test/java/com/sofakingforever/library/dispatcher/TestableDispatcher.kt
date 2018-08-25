@@ -1,47 +1,55 @@
-package com.sofakingforever.analytics.kits.mixpanel
+package com.sofakingforever.library.dispatcher
 
 import android.content.Context
-import com.mixpanel.android.mpmetrics.MixpanelAPI
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
 import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.base.Event
+import com.sofakingforever.library.events.InitDispatcherEvent
 
+class TestableDispatcher : AnalyticsDispatcher {
 
-class MixPanelDispatcherImpl(override val init: Boolean = false, private val projectToken: String? = null) : AnalyticsDispatcher {
+    override val init: Boolean = true
 
+    override val kit: AnalyticsKit = TestKit.instance
 
     override val dispatcherName: String = DispatcherName
 
-
-
-    override val kit: AnalyticsKit = MixPanelKit.instance
-
-    private lateinit var mixpanel: MixpanelAPI
+    val eventList: MutableList<Event> = mutableListOf()
 
     override fun initDispatcher(context: Context) {
-        mixpanel = MixpanelAPI.getInstance(context, projectToken)
+        track(InitDispatcherEvent())
     }
 
     override fun trackContentView(contentView: ContentViewEvent) {
-        mixpanel.track("contentView_" + contentView.getViewName(kit))
+        eventList.add(contentView)
     }
 
     override fun trackCustomEvent(event: CustomEvent) {
-        mixpanel.trackMap(event.getEventName(kit), event.getParameters(kit))
+        eventList.add(event)
     }
 
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        // not implementing for mixpanel
+        eventList.add(inviteEvent)
     }
 
     override fun setUserProperty(property: SetUserProperty) {
-        mixpanel.people.set(property.key, property.value)
+        eventList.add(property)
+    }
+
+    override fun track(event: Event) {
+        if (event is InitDispatcherEvent) {
+            eventList.add(event)
+        } else {
+            super.track(event)
+        }
     }
 
     companion object {
-        const val DispatcherName = "DefaultMixPanelDispatcher"
+        const val DispatcherName = "TestDispatcher"
     }
+
 }
