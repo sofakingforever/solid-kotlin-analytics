@@ -22,6 +22,7 @@ interface AnalyticsDispatcher {
     val kit: AnalyticsKit
 
     val dispatcherName : String
+
     /**
      * Should call the analytics library's initiation methods
      */

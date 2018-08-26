@@ -1,26 +1,26 @@
 package com.sofakingforever.analytics
 
+import android.content.Context
+
 /**
  * Holds some things for the Analytics class
  * @property isAnalyticsEnabled - no events will be sent if this is set to *false*
+ * @property checkForUpdates - should the library check for updates
  * @property exceptionHandler - implementation of @ExceptionHandler
  */
-class AnalyticsSettings {
+class AnalyticsSettings(val context: Context) {
 
     @Volatile
     var isAnalyticsEnabled = true
+    var checkForUpdates = true
 
-    var exceptionHandler: ExceptionHandler? = null
+    val enabledKits: ServiceEnabledMap<AnalyticsKit> = ServiceEnabledMap()
+    val enabledDispatchers: ServiceEnabledMap<String> = ServiceEnabledMap()
 
-    /**
-     * Just an exception callback to log/monitor exceptions,
-     * thrown by the *Analytics* class or any of its dispatchers.
-     */
-    interface ExceptionHandler {
+    class ServiceEnabledMap<Key> : LinkedHashMap<Key, Boolean>() {
 
-        fun onException(e: Exception)
+        fun isDisabled(key: Key): Boolean = this[key] == false
 
     }
-
-
 }
+

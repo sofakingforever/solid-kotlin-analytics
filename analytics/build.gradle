@@ -59,6 +59,10 @@ dependencies {
     // required if you want to use Mockito for Android tests
     androidTestImplementation 'org.mockito:mockito-android:2.7.22'
 
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+
+
+
 //    testCompile 'org.powermock:powermock:1.6.5'
 //    testCompile 'org.powermock:powermock-module-junit4:1.6.5'
 //

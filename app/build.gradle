@@ -29,9 +29,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     implementation project(path: ':analytics')
     implementation project(path: ':kit-answers')
     implementation project(path: ':kit-firebase')
-    implementation project(':kit-flurry')
-    implementation project(':kit-mixpanel')
+    implementation project(path: ':kit-flurry')
+    implementation project(path: ':kit-mixpanel')
+
+    implementation('com.crashlytics.sdk.android:answers:1.4.2@aar') {
+        transitive = true
+    }
+
+
 }

@@ -46,7 +46,7 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(context = context,
+analytics = Analytics(settings = AnalyticsSettings(context),
                 FirebaseDispatcherImpl(init = true),
                 MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
                 AnswersDispatcherImpl(init = true))
