@@ -10,7 +10,7 @@ import io.fabric.sdk.android.Kit
 /**
  * @property - fabricKits - if you use this property, you must include a new Answers instance
  */
-class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> = Answers()) : AnalyticsDispatcher {
+class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabricKits: Kit<*> = arrayOf(Answers())) : AnalyticsDispatcher {
 
     override val dispatcherName: String = DispatcherName
 
@@ -20,7 +20,7 @@ class AnswersDispatcherImpl(override val init: Boolean, val fabricKits: Kit<*> =
 
     override fun initDispatcher(context: Context) {
         // init Fabric with Answers, and any additonal fabric kits supplied
-        Fabric.with(context, fabricKits)
+        Fabric.with(context, *fabricKits)
     }
 
     override fun trackCustomEvent(event: com.sofakingforever.analytics.events.CustomEvent) {

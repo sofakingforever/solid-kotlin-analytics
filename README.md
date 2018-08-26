@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.11'
+    def version = '1.0.13'
 
     // add the basic analytics interface library - incl. LoggerDispatcher
     compile "com.sofakingforever.analytics:analytics:version@aar"
@@ -50,19 +50,25 @@ analytics = Analytics(settings = AnalyticsSettings(context),
                 FirebaseDispatcherImpl(init = true),
                 MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
                 AnswersDispatcherImpl(init = true))
+                
+// Use this constructor for Answers if you're using crashlytics,
+// or any other fabric kit in addition to Answers:
+AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
 
 // send event
 analytics.track(SimpleEvent())
+```
 
-// declare event - will be sent to both Firebase, MixPanel and Answers
+Don't forget to declare the event
+```kotlin
 class SimpleEvent : CustomEvent {
+    // declare name - will be sent to all dispatchers
     override fun getEventName(kit: AnalyticsKit): String = "Simple Event"
 
 }
 ```
 
-### See more integration stuff in the [example code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example) attached
-
+#### See more integration examples in the [source code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example)
 
 ## Todo List
 
@@ -76,6 +82,30 @@ class SimpleEvent : CustomEvent {
 - [x] Add Example Code to App Module
 - [x] Add Example Code to README
 - [x] Add Documentation
+- [x] Add Unit Tests
 - [ ] Who knows... :o
 
+
 ### Originally developed for [Wakey - Beautiful Alarm Clock](https://play.google.com/store/apps/details?id=com.sofaking.moonworshipper&hl=en_US)
+
+Wakey is a simple & beautiful animated alarm clock, featuring a spectacular design and an immersive experience - guaranteed to wake you up with a smile everyday!
+
+With our smiling sunrise, and grumpy lunar animations, this is the most unique alarm clock in our solar system.
+
+![Wakey Alarm Clock](https://cdn-images-1.medium.com/max/2000/1*DhcklS1xNZwHogX0wDQEyw.png)
+
+License
+-------
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
