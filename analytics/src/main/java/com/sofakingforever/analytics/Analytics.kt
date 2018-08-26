@@ -41,7 +41,9 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
 
         if (settings.isAnalyticsEnabled.not()) return
 
-        events.forEach {
+
+        events.forEach { event ->
+
             dispatchers.forEach { dispatcher ->
 
                 if (settings.enabledKits.isDisabled(dispatcher.kit)) return
@@ -49,9 +51,9 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
                 if (settings.enabledDispatchers.isDisabled(dispatcher.dispatcherName)) return
 
                 try {
-                    dispatcher.track(it)
+                    dispatcher.track(event)
                 } catch (e: Exception) {
-                    exceptionHandler?.onException(EventNotTrackedException(dispatcher, it, e))
+                    exceptionHandler?.onException(EventNotTrackedException(dispatcher, event, e))
                 }
             }
 
@@ -59,10 +61,16 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
         }
     }
 
+    /**
+     * Set Kit as enabled or disabled for future event dispatches
+     */
     fun setKitEnabled(kit: AnalyticsKit, enabled: Boolean) {
         settings.enabledKits[kit] = enabled
     }
 
+    /**
+     * Set Dispatcher as enabled or disabled for future event dispatches
+     */
     fun setDispatcherEnabled(dispatcherName: String, enabled: Boolean) {
         settings.enabledDispatchers[dispatcherName] = enabled
     }
