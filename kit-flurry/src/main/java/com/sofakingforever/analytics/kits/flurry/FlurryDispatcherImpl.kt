@@ -3,10 +3,7 @@ package com.sofakingforever.analytics.kits.flurry
 import android.content.Context
 import com.flurry.android.FlurryAgent
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.ContentViewEvent
-import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.*
 
 class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
@@ -41,6 +38,9 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
         // Flurry doesn't support this as far as I know
     }
 
+    override fun setUserProperties(properties: SetUserProperties) {
+        // Flurry doesn't support this
+    }
     private fun CustomEvent.createFlurryAnalyticsMap(): MutableMap<String, String> {
         val map: MutableMap<String, String> = mutableMapOf()
 

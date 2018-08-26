@@ -1,10 +1,7 @@
 package com.sofakingforever.analytics
 
 import android.content.Context
-import com.sofakingforever.analytics.events.ContentViewEvent
-import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.*
 import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 
@@ -21,13 +18,12 @@ interface AnalyticsDispatcher {
 
     val kit: AnalyticsKit
 
-    val dispatcherName : String
+    val dispatcherName: String
 
     /**
      * Should call the analytics library's initiation methods
      */
     fun initDispatcher(context: Context)
-
 
     fun trackContentView(contentView: ContentViewEvent)
 
@@ -37,22 +33,48 @@ interface AnalyticsDispatcher {
 
     fun setUserProperty(property: SetUserProperty)
 
+    fun setUserProperties(properties: SetUserProperties)
+
     /**
      * This method is called from the parent @Analytics class for each event.
      * Override this method if you plan on interfacing your own event types.
      */
     fun track(event: Event) {
+        // track the event only if it is not configured as excluded
         if (event.isConsideredIncluded(kit)) {
-            // track the event only if it is not configured as excluded
-            when (event) {
-                // track each type differently
-                is CustomEvent -> trackCustomEvent(event)
-                is ContentViewEvent -> trackContentView(event)
-                is InviteEvent -> trackInviteEvent(event)
-                is SetUserProperty -> setUserProperty(event)
-                // alert developer if this is a customized event implementation
-                else -> throw UnsupportedEventException(event)
+
+            var handled = false
+
+            // track for each type differently, including multiple implementations
+            if (event is CustomEvent) {
+                trackCustomEvent(event)
+                handled = true
             }
+
+            if (event is ContentViewEvent) {
+                trackContentView(event)
+                handled = true
+            }
+
+            if (event is InviteEvent) {
+                trackInviteEvent(event)
+                handled = true
+            }
+
+            if (event is SetUserProperty) {
+                setUserProperty(event)
+                handled = true
+            }
+
+            if (event is SetUserProperties) {
+                setUserProperties(event)
+                handled = true
+            }
+
+            if (!handled) {
+                throw UnsupportedEventException(event)
+            }
+
         }
     }
 
