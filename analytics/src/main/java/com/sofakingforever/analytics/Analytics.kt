@@ -15,8 +15,6 @@ import com.sofakingforever.analytics.version.VersionChecker
  */
 class Analytics(context: Context, val settings: AnalyticsSettings, private vararg val dispatchers: AnalyticsDispatcher) {
 
-    private val enabledKitMap: EnabledMap<AnalyticsKit> = EnabledMap()
-    private val enabledDispatcherMap: EnabledMap<String> = EnabledMap()
 
     var exceptionHandler: ExceptionHandler? = null
 
@@ -46,9 +44,9 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
         events.forEach {
             dispatchers.forEach { dispatcher ->
 
-                if (enabledKitMap.isDisabled(dispatcher.kit)) return
+                if (settings.enabledKits.isDisabled(dispatcher.kit)) return
 
-                if (enabledDispatcherMap.isDisabled(dispatcher.dispatcherName)) return
+                if (settings.enabledDispatchers.isDisabled(dispatcher.dispatcherName)) return
 
                 try {
                     dispatcher.track(it)
@@ -62,11 +60,11 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
     }
 
     fun setKitEnabled(kit: AnalyticsKit, enabled: Boolean) {
-        enabledKitMap[kit] = enabled
+        settings.enabledKits[kit] = enabled
     }
 
     fun setDispatcherEnabled(dispatcherName: String, enabled: Boolean) {
-        enabledDispatcherMap[dispatcherName] = enabled
+        settings.enabledDispatchers[dispatcherName] = enabled
     }
 
     /**
