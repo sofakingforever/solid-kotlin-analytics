@@ -1,9 +1,7 @@
 package com.sofakingforever.library
 
 import android.content.Context
-import android.util.Log
 import com.sofakingforever.analytics.Analytics
-import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.exceptions.EventNotTrackedException
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 import com.sofakingforever.library.dispatcher.TestKit
@@ -34,7 +32,7 @@ class AnalyticsUnitTest {
 
         analytics = Analytics(contextMock, dispatcher).apply {
 
-            this.settings.exceptionHandler = object : AnalyticsSettings.ExceptionHandler {
+            this.settings.exceptionHandler = object : Analytics.ExceptionHandler {
                 override fun onException(e: Exception) {
                     raisedException = e
                 }

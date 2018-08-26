@@ -1,4 +1,4 @@
-package com.sofakingforever.analytics.version
+package com.sofakingforever.analytics.exceptions
 
 import java.net.MalformedURLException
 

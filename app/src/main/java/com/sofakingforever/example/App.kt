@@ -6,9 +6,9 @@ import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.kits.answers.AnswersDispatcherImpl
 import com.sofakingforever.analytics.kits.firebase.FirebaseDispatcherImpl
-import com.sofakingforever.example.custom.CustomDispatcher
 import com.sofakingforever.analytics.kits.logger.LoggerDispatcherImpl
 import com.sofakingforever.analytics.kits.mixpanel.MixPanelDispatcherImpl
+import com.sofakingforever.example.custom.CustomDispatcher
 
 class App : Application() {
 
@@ -18,8 +18,17 @@ class App : Application() {
         super.onCreate()
 
 
+        // set an analytics enabled / disabled via SharedPrefs, Database, or anything else
+        val settings = AnalyticsSettings().also {
+
+            it.isAnalyticsEnabled = true
+
+
+        }
+
         // init analytics property. this is in charge of tracking all events
         analytics = Analytics(this,
+                settings,
                 CustomDispatcher(init = true),
                 LoggerDispatcherImpl(init = true),
                 FirebaseDispatcherImpl(init = true),
@@ -32,26 +41,19 @@ class App : Application() {
         )
 
 
-        analytics.settings.apply {
+        // set an exception handler
+        // either way, the analytics util won't crash your app
+        analytics.exceptionHandler = object : Analytics.ExceptionHandler {
+            override fun onException(e: Exception) {
 
-            // set analytics enabled / disabled via SharedPrefs, Database, or anything else
-            isAnalyticsEnabled = true
+                // this is the exception, log it, send it or ignore it.
+                Log.w("Analytics", "Analytics Exception Raised")
 
-            // set an exception handler
-            // either way, the analytics util won't crash your app
-            exceptionHandler = object : AnalyticsSettings.ExceptionHandler {
-                override fun onException(e: Exception) {
-
-                    // this is the exception, log it, send it or ignore it.
-
-                    Log.w("Analytics", "Analytics Exception Raised")
-
-                    e.printStackTrace()
-                }
-
+                e.printStackTrace()
             }
 
         }
+
 
     }
 }
