@@ -1,6 +1,5 @@
 package com.sofakingforever.analytics
 
-import android.content.Context
 import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.analytics.exceptions.EventNotTrackedException
 import com.sofakingforever.analytics.version.VersionChecker
@@ -13,11 +12,9 @@ import com.sofakingforever.analytics.version.VersionChecker
  *
  * @constructor create an instance of the *Analytics* class
  */
-class Analytics(context: Context, val settings: AnalyticsSettings, private vararg val dispatchers: AnalyticsDispatcher) {
-
+class Analytics(val settings: AnalyticsSettings, private vararg val dispatchers: AnalyticsDispatcher) {
 
     var exceptionHandler: ExceptionHandler? = null
-
 
     init {
 
@@ -27,7 +24,7 @@ class Analytics(context: Context, val settings: AnalyticsSettings, private varar
         // init all dispatchers
         dispatchers.forEach { dispatcher ->
             if (dispatcher.init) {
-                dispatcher.initDispatcher(context.applicationContext)
+                dispatcher.initDispatcher(settings.context.applicationContext)
             }
         }
 
