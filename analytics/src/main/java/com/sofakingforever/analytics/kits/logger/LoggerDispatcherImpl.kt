@@ -4,10 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
-import com.sofakingforever.analytics.events.ContentViewEvent
-import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.*
 
 /**
  * This is just a logger implementation, Use this if you're in DEBUG mode.
@@ -16,6 +13,7 @@ import com.sofakingforever.analytics.events.SetUserProperty
  * how to implement your own service dispatcher.
  */
 class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+
 
     override val dispatcherName: String = "LoggerDispatcher"
 
@@ -44,5 +42,8 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override fun setUserProperty(property: SetUserProperty) {
         Log.d(tag, "Tracking user property ${property.key} = ${property.value}")
+    }
+    override fun setUserProperties(properties: SetUserProperties) {
+        Log.d(tag, "Tracking user properties ${properties.getUserProperties(kit)}")
     }
 }
