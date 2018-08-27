@@ -3,6 +3,7 @@ package com.sofakingforever.analytics.kits.answers
 import android.content.Context
 import com.crashlytics.android.answers.Answers
 import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.events.SetUserProperties
 import com.sofakingforever.analytics.events.SetUserProperty
 import io.fabric.sdk.android.Fabric
 import io.fabric.sdk.android.Kit
@@ -11,6 +12,7 @@ import io.fabric.sdk.android.Kit
  * @property - fabricKits - if you use this property, you must include a new Answers instance
  */
 class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabricKits: Kit<*> = arrayOf(Answers())) : AnalyticsDispatcher {
+
 
     override val dispatcherName: String = DispatcherName
 
@@ -36,6 +38,10 @@ class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabri
     }
 
     override fun setUserProperty(property: SetUserProperty) {
+        // Answers doesn't support this
+    }
+
+    override fun setUserProperties(properties: SetUserProperties) {
         // Answers doesn't support this
     }
 

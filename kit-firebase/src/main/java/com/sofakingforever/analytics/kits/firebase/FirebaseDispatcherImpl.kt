@@ -4,10 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.ContentViewEvent
-import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.*
 
 class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
@@ -39,6 +36,12 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override fun setUserProperty(property: SetUserProperty) {
         firebaseAnalytics?.setUserProperty(property.key, property.value)
+    }
+
+    override fun setUserProperties(properties: SetUserProperties) {
+        properties.getUserProperties(kit).forEach {
+            firebaseAnalytics?.setUserProperty(it.key, it.value.toString())
+        }
     }
 
     private fun String.firebaseFriendly(): String {

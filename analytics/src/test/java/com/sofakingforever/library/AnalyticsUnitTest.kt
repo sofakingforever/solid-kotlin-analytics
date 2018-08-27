@@ -2,14 +2,12 @@ package com.sofakingforever.library
 
 import android.content.Context
 import com.sofakingforever.analytics.Analytics
+import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.exceptions.EventNotTrackedException
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 import com.sofakingforever.library.dispatcher.TestKit
 import com.sofakingforever.library.dispatcher.TestableDispatcher
-import com.sofakingforever.library.events.InitDispatcherEvent
-import com.sofakingforever.library.events.TestContentViewEvent
-import com.sofakingforever.library.events.TestCustomEvent
-import com.sofakingforever.library.events.UnsupportedEvent
+import com.sofakingforever.library.events.*
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
@@ -30,9 +28,9 @@ class AnalyticsUnitTest {
     @Test
     fun testAnalytics() {
 
-        analytics = Analytics(contextMock, dispatcher).apply {
+        analytics = Analytics(AnalyticsSettings(contextMock), dispatcher).apply {
 
-            this.settings.exceptionHandler = object : Analytics.ExceptionHandler {
+            this.exceptionHandler = object : Analytics.ExceptionHandler {
                 override fun onException(e: Exception) {
                     raisedException = e
                 }
@@ -80,7 +78,9 @@ class AnalyticsUnitTest {
 
         analytics.track(TestCustomEvent(5))
 
-        analytics.track(TestContentViewEvent(1))
+        analytics.track(TestContentViewEvent(6))
+
+        analytics.track(TestUserProperties(7))
 
     }
 
@@ -91,11 +91,15 @@ class AnalyticsUnitTest {
         val eventList = dispatcher.eventList
 
         // expect to find 3 custom events , 1 contentview and 1 init event
-        assert(eventList.size == 5)
+        assert(eventList.size == 6)
         assert(eventList[0] is InitDispatcherEvent)
         assert((eventList[1] as TestCustomEvent).number == 1)
         assert((eventList[2] as TestCustomEvent).number == 3)
         assert((eventList[3] as TestCustomEvent).number == 5)
-        assert((eventList[4] as TestContentViewEvent).number == 1)
+        assert((eventList[4] as TestContentViewEvent).number == 6)
+        assert((eventList[5] as TestUserProperties).number == 7)
+        val mapValues = (eventList[5] as TestUserProperties).getUserProperties(TestKit.instance).toString()
+
+
     }
 }

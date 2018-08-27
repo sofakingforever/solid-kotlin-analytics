@@ -4,10 +4,7 @@ import android.content.Context
 import com.mixpanel.android.mpmetrics.MixpanelAPI
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
-import com.sofakingforever.analytics.events.ContentViewEvent
-import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
-import com.sofakingforever.analytics.events.SetUserProperty
+import com.sofakingforever.analytics.events.*
 
 
 class MixPanelDispatcherImpl(override val init: Boolean = false, private val projectToken: String? = null) : AnalyticsDispatcher {
@@ -39,6 +36,10 @@ class MixPanelDispatcherImpl(override val init: Boolean = false, private val pro
 
     override fun setUserProperty(property: SetUserProperty) {
         mixpanel.people.set(property.key, property.value)
+    }
+
+    override fun setUserProperties(properties: SetUserProperties) {
+        mixpanel.people.setMap(properties.getUserProperties(kit))
     }
 
     companion object {
