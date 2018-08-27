@@ -19,7 +19,7 @@ class Analytics(val settings: AnalyticsSettings, private vararg val dispatchers:
     init {
 
         // check for new library version if enabled
-        if (settings.checkForUpdates) VersionChecker.onCheckVersion()
+        if (settings.checkForUpdates) VersionChecker.invoke()
 
         // init all dispatchers
         dispatchers.forEach { dispatcher ->

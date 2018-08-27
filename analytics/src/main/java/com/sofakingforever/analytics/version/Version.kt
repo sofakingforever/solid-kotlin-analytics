@@ -15,10 +15,10 @@ class Version : Comparable<Version> {
         return version
     }
 
-    override fun compareTo(that: Version): Int {
+    override fun compareTo(other: Version): Int {
 
         val levels1 = this.version.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val levels2 = that.version.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val levels2 = other.version.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         val length = Math.max(levels1.size, levels2.size)
 
