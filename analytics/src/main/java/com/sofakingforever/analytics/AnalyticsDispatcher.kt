@@ -1,7 +1,10 @@
 package com.sofakingforever.analytics
 
 import android.content.Context
-import com.sofakingforever.analytics.events.*
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperties
 import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.analytics.exceptions.UnsupportedEventException
 
@@ -31,8 +34,6 @@ interface AnalyticsDispatcher {
 
     fun trackInviteEvent(inviteEvent: InviteEvent)
 
-    fun setUserProperty(property: SetUserProperty)
-
     fun setUserProperties(properties: SetUserProperties)
 
     /**
@@ -58,11 +59,6 @@ interface AnalyticsDispatcher {
 
             if (event is InviteEvent) {
                 trackInviteEvent(event)
-                handled = true
-            }
-
-            if (event is SetUserProperty) {
-                setUserProperty(event)
                 handled = true
             }
 

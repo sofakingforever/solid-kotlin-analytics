@@ -37,10 +37,6 @@ class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabri
         instance.logInvite(inviteEvent.createAnswersInviteEvent())
     }
 
-    override fun setUserProperty(property: SetUserProperty) {
-        // Answers doesn't support this
-    }
-
     override fun setUserProperties(properties: SetUserProperties) {
         // Answers doesn't support this
     }

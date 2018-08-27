@@ -33,11 +33,6 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
         firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SHARE, inviteEvent.getBundle())
     }
-
-    override fun setUserProperty(property: SetUserProperty) {
-        firebaseAnalytics?.setUserProperty(property.key, property.value)
-    }
-
     override fun setUserProperties(properties: SetUserProperties) {
         properties.getUserProperties(kit).forEach {
             firebaseAnalytics?.setUserProperty(it.key, it.value.toString())
