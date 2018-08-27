@@ -4,14 +4,16 @@ import android.content.Context
 import com.mixpanel.android.mpmetrics.MixpanelAPI
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
-import com.sofakingforever.analytics.events.*
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.InviteEvent
+import com.sofakingforever.analytics.events.SetUserProperties
 
 
 class MixPanelDispatcherImpl(override val init: Boolean = false, private val projectToken: String? = null) : AnalyticsDispatcher {
 
 
     override val dispatcherName: String = DispatcherName
-
 
 
     override val kit: AnalyticsKit = MixPanelKit.instance
@@ -32,10 +34,6 @@ class MixPanelDispatcherImpl(override val init: Boolean = false, private val pro
 
     override fun trackInviteEvent(inviteEvent: InviteEvent) {
         // not implementing for mixpanel
-    }
-
-    override fun setUserProperty(property: SetUserProperty) {
-        mixpanel.people.set(property.key, property.value)
     }
 
     override fun setUserProperties(properties: SetUserProperties) {
