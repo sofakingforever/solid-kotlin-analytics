@@ -34,10 +34,6 @@ class TestableDispatcher : AnalyticsDispatcher {
         eventList.add(inviteEvent)
     }
 
-    override fun setUserProperty(property: SetUserProperty) {
-        eventList.add(property)
-    }
-
     override fun setUserProperties(properties: SetUserProperties) {
         eventList.add(properties)
     }

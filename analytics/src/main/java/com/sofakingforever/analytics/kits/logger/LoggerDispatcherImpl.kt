@@ -40,9 +40,7 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         Log.d(tag, "Tracking inviteEvent ${inviteEvent.packageName}")
     }
 
-    override fun setUserProperty(property: SetUserProperty) {
-        Log.d(tag, "Tracking user property ${property.key} = ${property.value}")
-    }
+
     override fun setUserProperties(properties: SetUserProperties) {
         Log.d(tag, "Tracking user properties ${properties.getUserProperties(kit)}")
     }
