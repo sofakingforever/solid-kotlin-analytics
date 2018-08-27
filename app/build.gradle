@@ -31,6 +31,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(path: ':analytics')
+
     implementation project(path: ':kit-answers')
     implementation project(path: ':kit-firebase')
     implementation project(path: ':kit-flurry')
