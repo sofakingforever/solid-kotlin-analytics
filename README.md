@@ -83,6 +83,7 @@ class SimpleEvent : CustomEvent {
 - [x] Add Example Code to README
 - [x] Add Documentation
 - [x] Add Unit Tests
+- [ ] Restructure project so it is not longer Android-dependant
 - [ ] Who knows... :o
 
 
