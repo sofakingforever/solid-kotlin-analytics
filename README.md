@@ -25,7 +25,10 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.17'
+    def version = '1.0.18'
+
+    // With the latest versions, you might have to include the next line manually (not sure why it isn't transistive)
+    compile "com.sofakingforever.repoverse:repoverse:1.0.2"
 
     // add the basic analytics interface library - incl. LoggerDispatcher
     compile "com.sofakingforever.analytics:analytics:version@aar"
