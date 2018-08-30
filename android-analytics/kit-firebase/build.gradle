@@ -47,7 +47,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation project(':analytics-remove')
+    implementation project(':android')
 
     // Firebase Analytics
     implementation 'com.google.firebase:firebase-core:16.0.1'

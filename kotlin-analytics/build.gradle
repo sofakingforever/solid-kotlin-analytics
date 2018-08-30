@@ -1,25 +1,144 @@
-plugins {
-    id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+def versionNameStr = '1.0.19'
+group 'com.sofakingforever.analytics'
+version versionNameStr
+
+buildscript {
+    ext.kotlin_version = '1.1.51'
+
+    repositories {
+        mavenCentral()
+
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
 }
 
-group 'com.sofakingforever.analytics'
-version '1.0-SNAPSHOT'
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.6
 
 repositories {
     mavenCentral()
+    maven { url "http://dl.bintray.com/sofakingforever/repoverse" }
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "com.sofakingforever.repoverse:repoverse:1.0.2"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.6"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.6"
+}
+
+ext {
+    bintrayRepo = 'analytics'
+    bintrayName = 'kotlin-analytics'
+
+    publishedGroupId = 'com.sofakingforever.analytics'
+    artifact = 'kotlin-analytics'
+    libraryName = 'analytics'
+    libraryVersion = versionNameStr
+
+    libraryDescription = 'This is a SOLID Kotlin Analytics Interface for Android.'
+
+    siteUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics'
+    gitUrl = 'https://github.com/sofakingforever/solid-kotlin-analytics.git'
+
+
+    developerId = 'sofakingforever'
+    developerName = 'sofakingforever'
+    developerEmail = 'sofakingforever@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+group = publishedGroupId
+version = libraryVersion
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId publishedGroupId
+            artifactId artifact
+
+            name libraryName
+            description libraryDescription
+            url siteUrl
+
+            licenses {
+                license {
+                    name licenseName
+                    url licenseUrl
+                }
+            }
+            developers {
+                developer {
+                    id developerId
+                    name developerName
+                    email developerEmail
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        dryRun = false
+        publish = true
+        override = false
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
 }
