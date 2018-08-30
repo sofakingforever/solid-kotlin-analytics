@@ -1,6 +1,5 @@
 package com.sofakingforever.library
 
-import android.app.Application
 import com.sofakingforever.library.dispatcher.TestableDispatcher
 import com.sofakingforever.library.events.InitDispatcherEvent
 import com.sofakingforever.library.events.TestCustomEvent
@@ -16,7 +15,7 @@ class DispatcherTest {
 
         val dispatcher = TestableDispatcher()
 
-        dispatcher.initDispatcher(Application())
+        dispatcher.initDispatcher()
 
         dispatcher.track(TestCustomEvent(1))
 

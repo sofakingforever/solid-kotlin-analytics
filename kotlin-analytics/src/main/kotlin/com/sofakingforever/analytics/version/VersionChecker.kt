@@ -1,13 +1,12 @@
 package com.sofakingforever.analytics.version
 
-import com.sofakingforever.library.BuildConfig
 import com.sofakingforever.repoverse.Version
 import com.sofakingforever.repoverse.resolvers.BintrayVersionResolver
 import com.sofakingforever.repoverse.resolvers.GitHubVersionResolver
 
 object VersionChecker {
 
-    private val currentVersion = Version(BuildConfig.VERSION_NAME)
+    private val currentVersion = Version("1.0.19")
 
     private const val packagePath: String = "sofakingforever/kotlin-analytics"
 

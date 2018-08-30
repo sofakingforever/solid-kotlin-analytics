@@ -2,7 +2,6 @@ package com.sofakingforever.analytics.events
 
 import com.sofakingforever.analytics.AnalyticsKit
 
-@Deprecated("Use SetUserProperties instead")
 interface SetUserProperty : SetUserProperties {
 
     val key: String

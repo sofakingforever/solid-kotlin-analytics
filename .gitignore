@@ -13,4 +13,6 @@ android-analytics/local\.properties
 
 kotlin-analytics/local\.properties
 
-kotlin-analytics/build/kotlin-build/
+kotlin-analytics/build/
+
+android-analytics/build/

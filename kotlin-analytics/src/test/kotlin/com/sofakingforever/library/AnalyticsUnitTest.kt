@@ -1,6 +1,5 @@
 package com.sofakingforever.library
 
-import android.content.Context
 import com.sofakingforever.analytics.Analytics
 import com.sofakingforever.analytics.AnalyticsSettings
 import com.sofakingforever.analytics.exceptions.EventNotTrackedException
@@ -9,12 +8,10 @@ import com.sofakingforever.library.dispatcher.TestKit
 import com.sofakingforever.library.dispatcher.TestableDispatcher
 import com.sofakingforever.library.events.*
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
 
 class AnalyticsUnitTest {
 
-    private val contextMock = mock(Context::class.java)
+//    private val contextMock = mock(Context::class.java)
 
     private lateinit var analytics: Analytics
 
@@ -22,13 +19,13 @@ class AnalyticsUnitTest {
     private var raisedException: Exception? = null
 
     init {
-        Mockito.`when`(contextMock.applicationContext).thenReturn(contextMock)
+//        Mockito.`when`(contextMock.applicationContext).thenReturn(contextMock)
     }
 
     @Test
     fun testAnalytics() {
 
-        analytics = Analytics(AnalyticsSettings(contextMock), dispatcher).apply {
+        analytics = Analytics(AnalyticsSettings(), dispatcher).apply {
 
             this.exceptionHandler = object : Analytics.ExceptionHandler {
                 override fun onException(e: Exception) {
@@ -55,6 +52,7 @@ class AnalyticsUnitTest {
         assert(raisedException is EventNotTrackedException)
         assert((raisedException as EventNotTrackedException).cause is UnsupportedEventException)
 
+        Thread.sleep(5000)
     }
 
 

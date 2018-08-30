@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
+import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
 import com.sofakingforever.analytics.events.*
 
 /**
@@ -12,19 +13,18 @@ import com.sofakingforever.analytics.events.*
  * Look at AnswersDispatcher or FirebaseDispatcher to learn more about
  * how to implement your own service dispatcher.
  */
-class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+class LoggerDispatcherImpl(override val init: Boolean, override val context: Context) : AndroidAnalyticsDispatcher {
 
 
     override val dispatcherName: String = "LoggerDispatcher"
 
-    constructor() : this(true)
-
+    constructor(context: Context) : this(true, context)
 
     private val tag = dispatcherName
 
     override val kit: AnalyticsKit = LoggerKit.instance
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         Log.d(tag, "Init Logger Analytics Dispatcher")
     }
 
@@ -34,10 +34,6 @@ class LoggerDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     override fun trackCustomEvent(event: CustomEvent) {
         Log.d(tag, "Tracking event ${event.getEventName(kit)}")
-    }
-
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        Log.d(tag, "Tracking inviteEvent ${inviteEvent.packageName}")
     }
 
 

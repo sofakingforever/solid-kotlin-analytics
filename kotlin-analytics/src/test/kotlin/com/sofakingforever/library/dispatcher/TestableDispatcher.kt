@@ -1,9 +1,10 @@
 package com.sofakingforever.library.dispatcher
 
-import android.content.Context
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
-import com.sofakingforever.analytics.events.*
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.SetUserProperties
 import com.sofakingforever.analytics.events.base.Event
 import com.sofakingforever.library.events.InitDispatcherEvent
 
@@ -17,8 +18,7 @@ class TestableDispatcher : AnalyticsDispatcher {
     override val dispatcherName: String = DispatcherName
 
     val eventList: MutableList<Event> = mutableListOf()
-
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         track(InitDispatcherEvent())
     }
 
@@ -28,10 +28,6 @@ class TestableDispatcher : AnalyticsDispatcher {
 
     override fun trackCustomEvent(event: CustomEvent) {
         eventList.add(event)
-    }
-
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        eventList.add(inviteEvent)
     }
 
     override fun setUserProperties(properties: SetUserProperties) {
