@@ -3,21 +3,23 @@ package com.sofakingforever.analytics.kits.firebase
 import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.sofakingforever.analytics.AnalyticsDispatcher
-import com.sofakingforever.analytics.events.*
+import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
+import com.sofakingforever.analytics.events.ContentViewEvent
+import com.sofakingforever.analytics.events.CustomEvent
+import com.sofakingforever.analytics.events.SetUserProperties
 
-class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
+class FirebaseDispatcherImpl(override val init: Boolean, override val context: Context) : AndroidAnalyticsDispatcher {
 
     override val dispatcherName: String = DispatcherName
 
-    constructor() : this(true)
+    constructor(context: Context) : this(true, context)
 
     override val kit = FirebaseKit.instance
 
     var firebaseAnalytics: FirebaseAnalytics? = null
 
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     }
 
@@ -30,9 +32,6 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
         firebaseAnalytics?.logEvent("contentView_" + contentView.getViewName(kit).firebaseFriendly(), Bundle.EMPTY)
     }
 
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SHARE, inviteEvent.getBundle())
-    }
     override fun setUserProperties(properties: SetUserProperties) {
         properties.getUserProperties(kit).forEach {
             firebaseAnalytics?.setUserProperty(it.key, it.value.toString())
@@ -51,27 +50,17 @@ class FirebaseDispatcherImpl(override val init: Boolean) : AnalyticsDispatcher {
 
     }
 
-
-    private fun InviteEvent.getBundle(): Bundle {
-        val bundle = Bundle()
-
-        bundle.putString("packageName", packageName)
-        bundle.putString("appName", getInviteMethod())
-
-        return bundle
-    }
-
     private fun CustomEvent.getBundle(): Bundle {
         val bundle = Bundle()
 
         getParameters(kit).forEach {
             when {
-                // numbers
+            // numbers
                 it.value is Int -> bundle.putInt(it.key, it.value as Int)
                 it.value is Float -> bundle.putFloat(it.key, it.value as Float)
                 it.value is Double -> bundle.putDouble(it.key, it.value as Double)
                 it.value is Long -> bundle.putLong(it.key, it.value as Long)
-                // other stuff
+            // other stuff
                 it.value is String -> bundle.putString(it.key, it.value as String)
                 it.value is Boolean -> bundle.putBoolean(it.key, it.value as Boolean)
 

@@ -2,16 +2,15 @@ package com.sofakingforever.analytics.kits.answers
 
 import android.content.Context
 import com.crashlytics.android.answers.Answers
-import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
 import com.sofakingforever.analytics.events.SetUserProperties
-import com.sofakingforever.analytics.events.SetUserProperty
 import io.fabric.sdk.android.Fabric
 import io.fabric.sdk.android.Kit
 
 /**
  * @property - fabricKits - if you use this property, you must include a new Answers instance
  */
-class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabricKits: Kit<*> = arrayOf(Answers())) : AnalyticsDispatcher {
+class AnswersDispatcherImpl(override val init: Boolean, override val context: Context, private vararg val fabricKits: Kit<*> = arrayOf(Answers())) : AndroidAnalyticsDispatcher {
 
 
     override val dispatcherName: String = DispatcherName
@@ -20,7 +19,7 @@ class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabri
 
     private val instance: Answers by lazy { Answers.getInstance() }
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         // init Fabric with Answers, and any additonal fabric kits supplied
         Fabric.with(context, *fabricKits)
     }
@@ -31,10 +30,6 @@ class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabri
 
     override fun trackContentView(contentView: com.sofakingforever.analytics.events.ContentViewEvent) {
         instance.logContentView(contentView.createAnswersEvent())
-    }
-
-    override fun trackInviteEvent(inviteEvent: com.sofakingforever.analytics.events.InviteEvent) {
-        instance.logInvite(inviteEvent.createAnswersInviteEvent())
     }
 
     override fun setUserProperties(properties: SetUserProperties) {
@@ -64,10 +59,6 @@ class AnswersDispatcherImpl(override val init: Boolean, private vararg val fabri
 
     private fun com.sofakingforever.analytics.events.ContentViewEvent.createAnswersEvent(): com.crashlytics.android.answers.ContentViewEvent {
         return com.crashlytics.android.answers.ContentViewEvent().putContentName(this.getViewName(kit))
-    }
-
-    private fun com.sofakingforever.analytics.events.InviteEvent.createAnswersInviteEvent(): com.crashlytics.android.answers.InviteEvent {
-        return com.crashlytics.android.answers.InviteEvent().putMethod(this.getInviteMethod()).putCustomAttribute("shareVia", this.shareVia)
     }
 
     companion object {

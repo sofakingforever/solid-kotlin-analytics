@@ -2,15 +2,14 @@ package com.sofakingforever.analytics.kits.mixpanel
 
 import android.content.Context
 import com.mixpanel.android.mpmetrics.MixpanelAPI
-import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
+import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.events.SetUserProperties
 
 
-class MixPanelDispatcherImpl(override val init: Boolean = false, private val projectToken: String? = null) : AnalyticsDispatcher {
+class MixPanelDispatcherImpl(override val init: Boolean = false, override val context: Context, private val projectToken: String? = null) : AndroidAnalyticsDispatcher {
 
 
     override val dispatcherName: String = DispatcherName
@@ -20,7 +19,7 @@ class MixPanelDispatcherImpl(override val init: Boolean = false, private val pro
 
     private lateinit var mixpanel: MixpanelAPI
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         mixpanel = MixpanelAPI.getInstance(context, projectToken)
     }
 
@@ -30,10 +29,6 @@ class MixPanelDispatcherImpl(override val init: Boolean = false, private val pro
 
     override fun trackCustomEvent(event: CustomEvent) {
         mixpanel.trackMap(event.getEventName(kit), event.getParameters(kit))
-    }
-
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        // not implementing for mixpanel
     }
 
     override fun setUserProperties(properties: SetUserProperties) {

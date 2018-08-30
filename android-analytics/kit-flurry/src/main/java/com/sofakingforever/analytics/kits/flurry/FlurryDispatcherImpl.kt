@@ -2,13 +2,12 @@ package com.sofakingforever.analytics.kits.flurry
 
 import android.content.Context
 import com.flurry.android.FlurryAgent
-import com.sofakingforever.analytics.AnalyticsDispatcher
+import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
 import com.sofakingforever.analytics.events.ContentViewEvent
 import com.sofakingforever.analytics.events.CustomEvent
-import com.sofakingforever.analytics.events.InviteEvent
 import com.sofakingforever.analytics.events.SetUserProperties
 
-class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
+class FlurryDispatcherImpl(override val context: Context, val apiKey: String) : AndroidAnalyticsDispatcher {
 
     override val dispatcherName: String = DispatcherName
 
@@ -16,7 +15,7 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
     override val kit = FlurryKit.instance
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         FlurryAgent.Builder()
                 .withLogEnabled(true)
                 .build(context, apiKey)
@@ -31,11 +30,6 @@ class FlurryDispatcherImpl(val apiKey: String) : AnalyticsDispatcher {
 
     override fun trackContentView(contentView: ContentViewEvent) {
         FlurryAgent.logEvent("contentView_" + contentView.getViewName(kit))
-    }
-
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        FlurryAgent.logEvent("inviteEvent_" + inviteEvent.packageName)
-
     }
 
     override fun setUserProperties(properties: SetUserProperties) {
