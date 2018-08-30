@@ -25,11 +25,15 @@ repositories {
 
 dependencies {
 
-    def version = '1.0.17'
+    def version = '1.0.19'
 
-    // add the basic analytics interface library - incl. LoggerDispatcher
-    compile "com.sofakingforever.analytics:analytics:version@aar"
 
+    // add the basic analytics interface library
+    compile "com.sofakingforever.analytics:analytics:version"
+
+    // add the basic analytics interface library
+    compile "com.sofakingforever.analytics:android:version@aar"
+    
     // then add the kits you need
     compile "com.sofakingforever.analytics:kit-answers:version@aar"
     compile "com.sofakingforever.analytics:kit-firebase:version@aar"

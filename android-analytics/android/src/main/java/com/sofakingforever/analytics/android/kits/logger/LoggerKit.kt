@@ -1,4 +1,4 @@
-package com.sofakingforever.analytics.kits.logger
+package com.sofakingforever.analytics.android.kits.logger
 
 import com.sofakingforever.analytics.AnalyticsKit
 

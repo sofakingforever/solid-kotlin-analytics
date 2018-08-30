@@ -62,7 +62,7 @@ ext {
     bintrayName = 'android-analytics'
 
     publishedGroupId = 'com.sofakingforever.analytics'
-    artifact = 'android-analyticss'
+    artifact = 'android-analytics'
     libraryName = 'android'
     libraryVersion = versionNameStr
 

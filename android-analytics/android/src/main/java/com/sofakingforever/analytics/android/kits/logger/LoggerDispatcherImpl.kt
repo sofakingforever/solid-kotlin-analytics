@@ -1,8 +1,7 @@
-package com.sofakingforever.analytics.kits.logger
+package com.sofakingforever.analytics.android.kits.logger
 
 import android.content.Context
 import android.util.Log
-import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
 import com.sofakingforever.analytics.android.AndroidAnalyticsDispatcher
 import com.sofakingforever.analytics.events.*

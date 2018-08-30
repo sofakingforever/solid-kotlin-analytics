@@ -1,6 +1,7 @@
 package com.sofakingforever.example.custom
 
 import android.content.Context
+import com.crashlytics.android.answers.InviteEvent
 import com.sofakingforever.analytics.AnalyticsDispatcher
 import com.sofakingforever.analytics.AnalyticsKit
 import com.sofakingforever.analytics.events.*
@@ -18,7 +19,7 @@ class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
 
     override val kit: AnalyticsKit = CustomKit.instance
 
-    override fun initDispatcher(context: Context) {
+    override fun initDispatcher() {
         // call custom analytics initiation function
     }
 
@@ -30,13 +31,6 @@ class CustomDispatcher(override val init: Boolean) : AnalyticsDispatcher {
         // track event
     }
 
-    override fun trackInviteEvent(inviteEvent: InviteEvent) {
-        // track invite event
-    }
-
-    override fun setUserProperty(property: SetUserProperty) {
-        // set user property
-    }
     override fun setUserProperties(properties: SetUserProperties) {
         // set user properties
     }
