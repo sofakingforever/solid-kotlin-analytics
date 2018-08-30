@@ -14,7 +14,6 @@ This library demonstrates how you could decouple analytics libraries from your b
 
 ## Quick Start Guide
 
-#### UPDATE: Both repo and libraries were changed. Please update your implementation!
 ### Add To Gradle
 Add library to your gradle module
 
@@ -28,19 +27,18 @@ dependencies {
     def version = '1.0.19'
 
 
-    // add the basic analytics interface library
+    // This is the generic java/kotlin interface
     compile "com.sofakingforever.analytics:analytics:version"
 
-    // add the basic analytics interface library
+    // This is an android-dependant extension interface
     compile "com.sofakingforever.analytics:android:version@aar"
     
-    // then add the kits you need
+    // then add the kits you need, or implement your own kit/dispatcher
     compile "com.sofakingforever.analytics:kit-answers:version@aar"
     compile "com.sofakingforever.analytics:kit-firebase:version@aar"
     compile "com.sofakingforever.analytics:kit-flurry:version@aar"
     compile "com.sofakingforever.analytics:kit-mixpanel:version@aar"
 
-    // or implement your own kit/dispatcher
 
 }
 ```
@@ -50,14 +48,17 @@ Initiate analytics and send events
 
 ```kotlin
 // init analytics
-analytics = Analytics(settings = AnalyticsSettings(context),
-                FirebaseDispatcherImpl(init = true),
-                MixPanelDispatcherImpl(init = true, projectToken = "TOKEN"),
-                AnswersDispatcherImpl(init = true))
-                
-// Use this constructor for Answers if you're using crashlytics,
-// or any other fabric kit in addition to Answers:
-AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
+analytics = Analytics(settings,
+                CustomDispatcher(init = true),
+                LoggerDispatcherImpl(init = true, context = this),
+                FirebaseDispatcherImpl(init = true, context = this),
+                MixPanelDispatcherImpl(init = true, projectToken = "TOKEN", context = this),
+                AnswersDispatcherImpl(init = true, context = this)
+
+
+//              if you're using crashlytics, or any other fabric kit in addition to Answers
+//              AnswersDispatcherImpl(init = true, Answers(), Crashlytics())
+        )
 
 // send event
 analytics.track(SimpleEvent())
@@ -71,6 +72,10 @@ class SimpleEvent : CustomEvent {
 
 }
 ```
+### Android Highlights
+
+If you're targeting Android, you need the android package, and you should generally extend
+`AndroidAnalyticsDispatcher` and `AndroidAnalyticsSettings` instead of the kotlin ones.
 
 #### See more integration examples in the [source code](https://github.com/sofakingforever/kotlin-analytics/tree/master/app/src/main/java/com/sofakingforever/example)
 
