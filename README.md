@@ -95,7 +95,7 @@ If you're targeting Android, you need the android package, and you should genera
 - [ ] Who knows... :o
 
 
-### Originally developed for [Wakey - Beautiful Alarm Clock](https://wakey.app)
+### Originally developed for [Wakey - Beautiful Alarm Clock](http://wakey.app/?ref=github)
 
 Wakey is a simple & beautiful animated alarm clock, featuring a spectacular design and an immersive experience - guaranteed to wake you up with a smile everyday!
 
