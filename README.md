@@ -38,6 +38,10 @@ dependencies {
     compile "com.sofakingforever.analytics:kit-firebase:version@aar"
     compile "com.sofakingforever.analytics:kit-flurry:version@aar"
     compile "com.sofakingforever.analytics:kit-mixpanel:version@aar"
+    
+    
+    // Don't forget to add kotlin dependency, if you're in a pure-java project
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71
 
 
 }
